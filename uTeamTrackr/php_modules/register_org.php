@@ -1,40 +1,49 @@
 <?php
+//Inregistrare organizatie
 
 session_start();
 include "db_conn.php";
 
+//Verificare daca au fost trimise infromatii prin POST
 if (isset($_POST['cName']) && isset($_POST['cPhone']) && isset($_POST['cEmail']) && isset($_POST['cAdress'])){
 
+    //Setarea variabilelor din post in variabile
     $cName = mysqli_real_escape_string($conn, $_POST['cName']);
     $cPhone = mysqli_real_escape_string($conn, $_POST['cPhone']);
     $cEmail = mysqli_real_escape_string($conn, $_POST['cEmail']);
     $cAdress = mysqli_real_escape_string($conn, $_POST['cAdress']);
     $token = md5(rand());
 
+    //Daca um camp ramane gol, se intoarce la pagina de login
     if(empty($cName) || empty($cPhone) || empty($cEmail) || empty($cAdress)){
 
         header("location: ../index.php");
         exit();
 
+    //Verificare daca numele organizatiei nu exista deja
     }else if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM organizations WHERE Email='$cEmail' OR Name ='$cName' OR Phone='$cPhone'"))){
 
         header("location: ../index.php?error=Organization already exists!");
         exit();
 
+    //Inserarea datelor in baza de date
     }else{
 
         $sql = "INSERT INTO organizations (id, Name, Phone, Email, Adress, token) VALUES (NULL, '$cName', '$cPhone', '$cEmail', '$cAdress','$token')";
         $sql_result = mysqli_query($conn, $sql);
 
+        //Emailul de verificare
         if($sql_result){
 
             #sendmail_verify("$fName", "$lName", "$uEmail", "$token");
-            
+        
+        //In caz de eroare, se vor cere din nou datele
         }else{
             header("location: ../index.php");
             exit();
         }
 
+        //Crearea contului de admin al organizatiei
         if (isset($_POST['fName']) && isset($_POST['lName']) && isset($_POST['uPhone']) && isset($_POST['uEmail']) && isset($_POST['uPass']) && isset($_POST['uRePass'])){
     
             $fName = mysqli_real_escape_string($conn, $_POST['fName']);
@@ -80,8 +89,11 @@ if (isset($_POST['cName']) && isset($_POST['cPhone']) && isset($_POST['cEmail'])
         
             }
         }
-        
-        $admin_id= mysqli_fetch_assoc(mysqli_query($conn, "SELECT ID FROM users WHERE Email='$uEmail'"));
+        //Administrarea id ului adminul si organizatiei
+        $sql="SELECT ID FROM users WHERE Email='$uEmail'";
+        $sql_result=mysqli_query($conn, $sql);
+        $admin_id= mysqli_fetch_assoc($sql_result);
+
         $id = $admin_id['ID'];
         mysqli_query($conn,"UPDATE organizations SET Admin= '$admin_id' WHERE id ='$id'");
 
