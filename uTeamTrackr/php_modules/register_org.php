@@ -62,7 +62,7 @@ if (isset($_POST['cName']) && isset($_POST['cPhone']) && isset($_POST['cEmail'])
         
             }else{
                 
-                $org_id= mysql_fetch_assoc(mysqli_query($conn, "SELECT ID FROM organizations WHERE Email='$cEmail'"));
+                $org_id= mysqli_fetch_assoc(mysqli_query($conn, "SELECT ID FROM organizations WHERE Email='$cEmail'"));
                 $id = $org_id['ID'];
 
                 $sql = "INSERT INTO users (ID, FName, LName, Email, Phone, Pass ,Rank, Org, token) VALUES (NULL, '$fName', '$lName', '$uEmail', '$uPhone', '$uPass','admin','$id', '$token')";
@@ -81,7 +81,7 @@ if (isset($_POST['cName']) && isset($_POST['cPhone']) && isset($_POST['cEmail'])
             }
         }
         
-        $admin_id= mysql_fetch_assoc(mysqli_query($conn, "SELECT ID FROM users WHERE Email='$uEmail'"));
+        $admin_id= mysqli_fetch_assoc(mysqli_query($conn, "SELECT ID FROM users WHERE Email='$uEmail'"));
         $id = $admin_id['ID'];
         mysqli_query($conn,"UPDATE organizations SET Admin= '$admin_id' WHERE id ='$id'");
 
