@@ -18,13 +18,13 @@
         <div class="input-group">
 
             <div class="input-field">
-                <i class="fa-solid fa-phone fa-lg"></i>
-                <input type= "text" name="uEmail" placeholder="User Email">
+                <i class="fa-sharp fa-solid fa-envelope"></i>
+                <input type= "email" name="uEmail" placeholder="User Email">
             </div>
         
             <div class="input-field">
-                <i class="fa-solid fa-phone fa-lg"></i>
-                <input type= "text" name="uPassword" placeholder="Password">
+                <i class="fa-sharp fa-solid fa-key"></i>
+                <input type= "password" name="uPassword" placeholder="Password">
             </div>
 
             

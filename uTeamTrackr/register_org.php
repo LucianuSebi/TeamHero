@@ -33,22 +33,22 @@
 
             <div class="input-field">
                 <i class="fa-solid fa-phone fa-lg"></i>
-                <input type= "text" name="uPhone" placeholder="Phone">
+                <input type= "tel" name="uPhone" placeholder="Phone">
             </div>
 
             <div class="input-field">
                 <i class="fa-sharp fa-solid fa-envelope"></i>
-                <input type= "text" name="uEmail" placeholder="Email">
+                <input type= "email" name="uEmail" placeholder="Email">
             </div>
 
             <div class="input-field">
                 <i class="fa-sharp fa-solid fa-key"></i>
-                <input type= "text" name="uPass" placeholder="Password">
+                <input type= "password" name="uPass" placeholder="Password">
             </div>
 
             <div class="input-field">
                 <i class="fa-sharp fa-solid fa-key"></i>
-                <input type= "text" name="uRePass" placeholder="Repeat Password">
+                <input type= "password" name="uRePass" placeholder="Repeat Password">
 
             </div>
 
@@ -66,12 +66,12 @@
 
             <div class="input-field">
             <i class="fa-solid fa-phone fa-lg"></i>
-                <input type= "text" name="cPhone" placeholder="Company Phone">
+                <input type= "tel" name="cPhone" placeholder="Company Phone">
             </div>
 
             <div class="input-field">
                 <i class="fa-sharp fa-solid fa-envelope"></i>
-                <input type= "text" name="cEmail" placeholder="Company Email">
+                <input type= "email" name="cEmail" placeholder="Company Email">
             </div>
 
             <div class="input-field">
