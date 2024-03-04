@@ -6,6 +6,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formular</title>
+    <style>
+        h2{
+            text-align: center;
+        }
+       
+    </style>
     
 </head>
 <body>
@@ -16,12 +22,12 @@
         <div class="input-group">
 
             <div class="input-field">
-                <i class="fa-solid fa-phone fa-lg"></i>
+                <i class="fa-sharp fa-solid fa-user"></i>
                 <input type= "text" name="fName" placeholder="First Name">
             </div>
         
             <div class="input-field">
-                <i class="fa-solid fa-phone fa-lg"></i>
+                <i class="fa-sharp fa-solid fa-user"></i>
                 <input type= "text" name="lName" placeholder="Last Name">
             </div>
 
@@ -31,17 +37,17 @@
             </div>
 
             <div class="input-field">
-                <i class="fa-solid fa-phone fa-lg"></i>
+                <i class="fa-sharp fa-solid fa-envelope"></i>
                 <input type= "text" name="uEmail" placeholder="Email">
             </div>
 
             <div class="input-field">
-                <i class="fa-solid fa-phone fa-lg"></i>
+                <i class="fa-sharp fa-solid fa-key"></i>
                 <input type= "text" name="uPass" placeholder="Password">
             </div>
 
             <div class="input-field">
-                <i class="fa-solid fa-phone fa-lg"></i>
+                <i class="fa-sharp fa-solid fa-key"></i>
                 <input type= "text" name="uRePass" placeholder="Repeat Password">
 
             </div>
@@ -54,22 +60,22 @@
         <div class="input-group">
 
             <div class="input-field">
-                <i class="fa-solid fa-phone fa-lg"></i>
+                <i class="fa-sharp fa-solid fa-building"></i>
                 <input type= "text" name="cName" placeholder="Company Name">
             </div>
 
             <div class="input-field">
-                <i class="fa-solid fa-phone fa-lg"></i>
+            <i class="fa-solid fa-phone fa-lg"></i>
                 <input type= "text" name="cPhone" placeholder="Company Phone">
             </div>
 
             <div class="input-field">
-                <i class="fa-solid fa-phone fa-lg"></i>
+                <i class="fa-sharp fa-solid fa-envelope"></i>
                 <input type= "text" name="cEmail" placeholder="Company Email">
             </div>
 
             <div class="input-field">
-                <i class="fa-solid fa-phone fa-lg"></i>
+                <i class="fa-sharp fa-solid fa-location-dot"></i>
                 <input type= "text" name="cAdress" placeholder= "Company Address">
             </div>
         </div>
