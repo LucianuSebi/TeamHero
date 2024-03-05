@@ -6,7 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formular</title>
-    <style>
+        <style>
+       
+
         h2{
             text-align: center;
         }
@@ -16,9 +18,11 @@
 </head>
 <body>
     
-    <form action="php_modules/register_org.php" method="post">
+    <form action="php_modules/register_org.php" method="post" style="height: 80%;">
     <h2>Administrator Information</h2>
         <!-- Administrator Information -->
+       
+
         <div class="input-group">
 
             <div class="input-field">

@@ -11,6 +11,8 @@ body {
   }
   
   .input-group{
+    height: 100%;
+    width: 100%;
     
 }
 .input-field{
@@ -22,6 +24,8 @@ body {
     max-height: 65px;
     transition: max-height 0.5s;
     overflow: hidden;
+    width: 80%;
+    height: 7%;
 }
 .input-field i{
     margin-left: 15px;
@@ -78,4 +82,9 @@ input{
     }
   }
   
+  .body_rezolutie 
+    {
+      font-family: Arial, sans-serif;
+  }
+
   
