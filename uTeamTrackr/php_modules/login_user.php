@@ -41,11 +41,11 @@ if (isset($_POST['uEmail']) && isset($_POST['uPass'])){
                 //Stocarea datelor intr-un tablou de sesiune numit user
                 $_SESSION['auth'] = TRUE;
                 $_SESSION['user'] = [
-                    'fName' => $row['prenume'],
-                    'lName' => $row['nume'],
-                    'uEmail' => $row['email'],
-                    'uPhone' => $row['telefon'],
-                    'rank' => $row['rank'],
+                    'fName' => $row['FName'],
+                    'lName' => $row['LName'],
+                    'uEmail' => $row['Email'],
+                    'uPhone' => $row['Phone'],
+                    'rank' => $row['Rank'],
                 ]; 
 
                 //Redirectionare la pagina principala

@@ -21,9 +21,9 @@ session_start();
 
              <h2>
                 <?php if(isset($_SESSION['user'])){
-                    echo "Sunteti logat ca si user cu email-ul" + $_SESSION['user']['email'];
+                    echo "Sunteti logat ca si user cu email-ul ".$_SESSION['user']['uEmail'];
                 }else if(isset($_SESSION['organization'])){
-                    echo "Sunteti logat ca si organizatie cu email-ul" + $_SESSION['organization']['email'];
+                    echo "Sunteti logat ca si organizatie cu email-ul".$_SESSION['organization']['cEmail'];
                 }else{
                     echo"nu sunteti logat";
                 }?>
