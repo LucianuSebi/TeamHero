@@ -30,6 +30,10 @@ session_start();
              </h2>
             
              <form action="php_modules/logout.php"><button type="submit">logout</button></form>
+             <a href="register_org.php">Intregistrare ca si organizarie</a>
+             <a href="register_user.php">Inregistrare ca si user</a>
+             <a href="login_org.php">Logare ca si organizatie</a>
+             <a href="login_user.php">Logare ca si user</a>
         </div>
 
         <div class="topSection">
