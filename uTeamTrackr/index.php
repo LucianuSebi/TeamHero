@@ -23,7 +23,7 @@ session_start();
                 <?php if(isset($_SESSION['user'])){
                     echo "Sunteti logat ca si user cu email-ul ".$_SESSION['user']['uEmail'];
                 }else if(isset($_SESSION['organization'])){
-                    echo "Sunteti logat ca si organizatie cu email-ul".$_SESSION['organization']['cEmail'];
+                    echo "Sunteti logat ca si organizatie cu email-ul ".$_SESSION['organization']['cEmail'];
                 }else{
                     echo"nu sunteti logat";
                 }?>

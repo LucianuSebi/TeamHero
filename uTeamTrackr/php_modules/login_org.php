@@ -20,30 +20,27 @@ if (isset($_POST['cEmail']) && isset($_POST['cPass']))
     {
         $sql = "SELECT * FROM users WHERE Email = '$cEmail' AND Pass = '$cPass'";
         $sql_result = mysqli_query($conn,$sql);
-        if (mysqli_fetch_row($sql_result) == 1)
+        if (mysqli_num_rows($sql_result) == 1)
         {
             $row = mysqli_fetch_array($sql_result);
-            if($row['verificat'] == '1')
+            if($row['Verified'] == '1')
             {
                 $_SESSION['auth'] = TRUE;
-                $_SESSION['organizations'] = [
-                    'Name' => $row['nume'],
-                    'Email' => $row['email'],
-                    'Adress' => $row['adresa'],
-                    'Admin' => $row['admin'],
+                $_SESSION['organization'] = [
+                    'cEmail' => $row['Email'],
                 ];
+                header("location: ../index.php");
+                exit();
             }else
-           
-                {
+            {
                 header("location: ../index.php?error=Please Verify your Email Adress.");
                 exit();
-                }
-
-            } else
-            {
-                header("location: ../index.php?error=Incorect Name or Password");
-                exit();
             }
+        } else
+        {
+            header("location: ../index.php?error=Incorect Name or Password");
+            exit();
+        }
 
         }
     }else{
