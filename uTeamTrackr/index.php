@@ -29,6 +29,7 @@ session_start();
                 }?>
              </h2>
             
+             <form action="php_modules/logout.php"><button type="submit">logout</button></form>
         </div>
 
         <div class="topSection">

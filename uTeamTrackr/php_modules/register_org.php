@@ -90,10 +90,8 @@ if (isset($_POST['cName']) && isset($_POST['cPhone']) && isset($_POST['cEmail'])
             }
         }
         //Administrarea id ului adminul si organizatiei
-        $sql="SELECT ID FROM users WHERE Email='$uEmail'";
-        $sql_result=mysqli_query($conn, $sql);
-        $admin_id= mysqli_fetch_assoc($sql_result);
 
+        $admin_id= mysqli_fetch_assoc(mysqli_query($conn, "SELECT ID FROM users WHERE Email='$uEmail'"));
         $id = $admin_id['ID'];
         mysqli_query($conn,"UPDATE organizations SET Admin= '$admin_id' WHERE id ='$id'");
 
