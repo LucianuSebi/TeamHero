@@ -24,7 +24,7 @@
         
             <div class="input-field">
                 <i class="fa-sharp fa-solid fa-key"></i>
-                <input type= "password" name="uPassword" placeholder="Password">
+                <input type= "password" name="uPass" placeholder="Password">
             </div>
 
             
