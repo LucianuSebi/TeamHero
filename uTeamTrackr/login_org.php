@@ -23,7 +23,7 @@
         
             <div class="input-field">
                 <i class="fa-solid fa-phone fa-lg"></i>
-                <input type= "text" name="cPassword" placeholder="Password">
+                <input type= "text" name="cPass" placeholder="Password">
             </div>
 
             

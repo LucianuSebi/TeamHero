@@ -18,7 +18,7 @@ if (isset($_POST['cEmail']) && isset($_POST['cPass']))
     }
     else
     {
-        $sql = "SELECT * FROM users WHERE Email = '$cEmail' AND parola = '$cPass' AND id = 1";
+        $sql = "SELECT * FROM users WHERE Email = '$cEmail' AND Pass = '$cPass'";
         $sql_result = mysqli_query($conn,$sql);
         if (mysqli_fetch_row($sql_result) == 1)
         {
@@ -27,9 +27,10 @@ if (isset($_POST['cEmail']) && isset($_POST['cPass']))
             {
                 $_SESSION['auth'] = TRUE;
                 $_SESSION['organizations'] = [
-                    'cName' => $row['nume'],
-                    'cEmail' => $row['email'],
-                    'cAdmin' => $row['admin'],
+                    'Name' => $row['nume'],
+                    'Email' => $row['email'],
+                    'Adress' => $row['adresa'],
+                    'Admin' => $row['admin'],
                 ];
             }else
            
