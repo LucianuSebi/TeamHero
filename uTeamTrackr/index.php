@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +18,16 @@
     <div class="topBar">
         <div class="topSection">
              <h1>UTeamTrackr</h1>
+
+             <h2>
+                <?php if(isset($_SESSION['user'])){
+                    echo "Sunteti logat ca si user cu email-ul" + $_SESSION['user']['email'];
+                }else if(isset($_SESSION['organization'])){
+                    echo "Sunteti logat ca si organizatie cu email-ul" + $_SESSION['organization']['email'];
+                }else{
+                    echo"nu sunteti logat";
+                }?>
+             </h2>
             
         </div>
 

@@ -42,13 +42,14 @@ if(isset($_POST['fName']) && isset($_POST['lName']) && isset($_POST['uPhone']) &
     else
     {
         
-        $sql = "INSERT INTO users (ID, FName, LName, Email, Phone, Pass, Token) VALUES (NULL,'$fName','$lName','$uEmail','$uPhone','$uEmail','$uPass', $token)";
+        $sql = "INSERT INTO users (ID, FName, LName, Email, Phone, Pass, token) VALUES (NULL,'$fName','$lName','$uEmail','$uPhone','$uPass', '$token')";
         $sql_result = mysqli_query($conn,$sql);
 
         //Trimiterea emailului de validare a contului
         if ($sql_result)
         {
             #sendmail_verify("$fName", "$lName", "$uEmail", "$token");
+            header("location: ../index.php");
         }
         
         //Reintoarcerea la pagina de login in caz de eroare
