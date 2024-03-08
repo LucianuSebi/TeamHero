@@ -17,6 +17,7 @@ session_start();
 <body>
     <div class="topBar">
         <div class="topSection">
+            <h1 style="color: red;"><?php echo $_SESSION['status']; ?></h1>
              <h1>UTeamTrackr</h1>
 
              <h2>
