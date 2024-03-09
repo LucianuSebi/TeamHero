@@ -32,7 +32,7 @@ function sendmail_verify($fName, $lName, $uEmail, $verification_link)
     $mail->isHTML(true);
     $mail->Subject = 'Email Verification from uTeamTrackr.com';
     $mail->Body = '
-        <h2>You have Registered with uTeamTrackr.com</h2>
+        <h2>You have Registered as an Employee with uTeamTrackr.com</h2>
         <h5>Verify your email adress to Login with by clicking the link provided below</h5>
         <br></br>
         <a href="'.$verification_link.'"> Click me to verify! </a>
