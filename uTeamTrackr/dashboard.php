@@ -67,10 +67,10 @@ session_start();
 
             <ul>
                 <li>
-                    <a href="#">Members</a>
+                    <a href="dashboard_members.php">Members</a>
                 </li>
                 <li>
-                    <a href="#">Projects</a>
+                    <a href="dashboard_projects.php">Projects</a>
                 </li>
                 <li>
                     <a href="#">Organization</a>

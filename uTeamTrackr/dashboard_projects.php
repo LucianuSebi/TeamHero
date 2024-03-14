@@ -4,11 +4,11 @@ include "db_conn.php";
 $search = mysqli_real_escape_string($conn, $_GET['search']);
 $org = $_SESSION['organization']['uOrg'];
 if (!(empty($_GET['search']))) {
-    $sql = "SELECT * FROM users WHERE FName like '%$search%' OR LName like '%$search%' AND Org= '$org'";;
+    $sql = "SELECT * FROM projects WHERE Org= '$org'";
     $sql_result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($sql_result);
 } else
-    $sql = "SELECT * FROM users WHERE org = '$org'";
+    $sql = "SELECT * FROM projects WHERE org = '$org'";
 $sql_result = mysqli_query($conn, $sql);
 ?>
 
@@ -199,30 +199,22 @@ $sql_result = mysqli_query($conn, $sql);
     </div>
 
     <div class="pageContent">
-        <div class="search-box">
-            <form action="" class="searchForm">
-                <input type="text" placeholder="Search For A Member" name="search" id="searchField" autocomplete="off">
-                <button type="submit" id="searchBtn"><i class="fa-solid fa-magnifying-glass fa-2xl"></i></button>
-            </form>
-        </div>
         <div class="categorii">
             <?php while ($row = mysqli_fetch_assoc($sql_result)) {
 
                 if (!(empty($_GET['search']))) {
-                    ?><a class="categorie" href="edit_user.php?user=<?php echo $row['ID']; ?>"><img id="poza-categorie"
-                            src="images/users/<?php echo $row['ID']; ?>.png" />
+                    ?><a class="categorie" href="edit_projects.php?project=<?php echo $row['ID']; ?>"><img
+                            id="poza-categorie" src="images/projects/<?php echo $row['ID']; ?>.png" />
                         <p class="titlu-categorie">
-                            <?php echo $row['FName'];
-                            echo " " . $row['LName']; ?>
+                            <?php echo $row['name']; ?>
                         </p>
                     </a>
                     <?php
                 } else {
-                    ?><a class="categorie" href="edit_user.php?user=<?php echo $row['ID']; ?>"><img id="poza-categorie"
-                            src="images/users/<?php echo $row['ID']; ?>.png" />
+                    ?><a class="categorie" href="edit_projects.php?project=<?php echo $row['ID']; ?>"><img
+                            id="poza-categorie" src="images/projects/<?php echo $row['ID']; ?>.png" />
                         <p class="titlu-categorie">
-                            <?php echo $row['FName'];
-                            echo " " . $row['LName']; ?>
+                            <?php echo $row['name']; ?>
                         </p>
                     </a>
                     <?php
