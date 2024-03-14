@@ -1,5 +1,5 @@
 <?php
-//Inregistrare organizatie
+//Organisation register
 
 session_start();
 include "db_conn.php";
@@ -70,10 +70,10 @@ function sendmail_verify_org($fName, $lName, $uEmail, $verification_link)
 
 }
 
-//Verificare daca au fost trimise infromatii prin POST
+//Checking if the info was sent through POST method
 if (isset($_POST['cName']) && isset($_POST['cPhone']) && isset($_POST['cEmail']) && isset($_POST['cAdress']) && isset($_POST['fName']) && isset($_POST['lName']) && isset($_POST['uPhone']) && isset($_POST['uEmail']) && isset($_POST['uPass']) && isset($_POST['uRePass'])) {
 
-    //Setarea variabilelor din post in variabile
+    //Setting the variables from POST into variables
     $cName = mysqli_real_escape_string($conn, $_POST['cName']);
     $cPhone = mysqli_real_escape_string($conn, $_POST['cPhone']);
     $cEmail = mysqli_real_escape_string($conn, $_POST['cEmail']);
@@ -87,38 +87,38 @@ if (isset($_POST['cName']) && isset($_POST['cPhone']) && isset($_POST['cEmail'])
     $uPass = mysqli_real_escape_string($conn, $_POST['uPass']);
     $uRePass = mysqli_real_escape_string($conn, $_POST['uRePass']);
 
-    //Daca um camp ramane gol, se intoarce la pagina de login
+    //If a field remains empty, it is send to the login page
     if (empty($cName) || empty($cPhone) || empty($cEmail) || empty($cAdress)) {
 
         header("location: ../index.php");
         exit();
 
-        //Verificare daca numele organizatiei nu exista deja
+        //Checking if the organisation name already exists
     } else if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM organizations WHERE Email='$cEmail' OR Name ='$cName' OR Phone='$cPhone'"))) {
 
         header("location: ../index.php?error=Organization already exists!");
         exit();
 
-        //Inserarea datelor in baza de date
+        //Inserting data into the data base
     } else {
 
         $sql = "INSERT INTO organizations (id, Name, Phone, Email, Adress, token) VALUES (NULL, '$cName', '$cPhone', '$cEmail', '$cAdress','$token')";
         $sql_result = mysqli_query($conn, $sql);
 
-        //Emailul de verificare
+        //Check up email
         if ($sql_result) {
 
             $site_url = $_ENV['SITE_URL'];
             $verification_link = "http://" . $site_url . "/teamhero/uteamtrackr/php_modules/verify-email.php?token=" . $token;
             sendmail_verify_org("$fName", "$lName", "$cEmail", "$verification_link");
 
-            //In caz de eroare, se vor cere din nou datele
+            //In case of error, the info will be requested again
         } else {
             header("location: ../index.php");
             exit();
         }
 
-        //Crearea contului de admin al organizatiei
+        //Creating the admin organisation account
 
 
         $token = md5(rand());
@@ -160,7 +160,8 @@ if (isset($_POST['cName']) && isset($_POST['cPhone']) && isset($_POST['cEmail'])
 
         }
 
-        //Administrarea id ului adminul si organizatiei
+        //The administration of the admin's id and the organisation's one
+        
 
         $admin_id = mysqli_fetch_assoc(mysqli_query($conn, "SELECT ID FROM users WHERE Email='$uEmail'"));
         $ida = $admin_id['ID'];
