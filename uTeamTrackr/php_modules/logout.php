@@ -1,7 +1,7 @@
-<?php //deschidre php
-include "db_conn.php"; //conectam baza de date 
-session_start(); //Pornim sisiunea de logout
-session_unset(); //Ștergem datele care au rulat în sesiune
-session_destroy(); //Inchidem sesiune de logout
-header("location: ../index.php");  //Trimitere pagină de login
-exit(); //ieșire
+<?php //opening php
+include "db_conn.php"; //connecting the data base 
+session_start(); //starting the logout session
+session_unset(); //deleting the dates that runned into the session
+session_destroy(); //closing the logout session
+header("location: ../index.php");  //sending into the login page
+exit(); //exit
