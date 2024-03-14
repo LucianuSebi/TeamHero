@@ -1,5 +1,5 @@
 <?php
-//Inregistrare Utilizator
+//User sign-up
 
 session_start();
 include "db_conn.php";
@@ -43,9 +43,10 @@ function sendmail_verify($fName, $lName, $uEmail, $verification_link)
 }
 
 
-//Verificare daca variabilele trimise prin POST sunt setate
+//Checking if the variables sent through POST are setted
+
 if (isset($_POST['fName']) && isset($_POST['lName']) && isset($_POST['uPhone']) && isset($_POST['uEmail']) && isset($_POST['uPass']) && isset($_POST['uRePass'])) {
-    //Setarea variabilelor din post in variabile
+    //Setting the variables from POST into variables
 
     $fName = mysqli_real_escape_string($conn, $_POST['fName']);
     $lName = mysqli_real_escape_string($conn, $_POST['lName']);
@@ -55,30 +56,30 @@ if (isset($_POST['fName']) && isset($_POST['lName']) && isset($_POST['uPhone']) 
     $uRePass = mysqli_real_escape_string($conn, $_POST['uRePass']);
     $token = md5(rand());
 
-    //Daca um camp ramane gol, se intoarce la pagina de login
+    //If a field stays empty, the user is sent back to the login page
     if (empty($fName) || empty($lName) || empty($uEmail) || empty($uEmail) || empty($uRePass)) {
         header("location: ../index.php");
         exit();
     }
-    //Daca parolele difera se va afisa mesajul corespunzator
+    //If the passwords are different, an appropiate message will show up
     else if ($uPass != $uRePass) {
 
         header("location: ../index.php?error=Passwords are not identical");
         exit();
     }
-    //Emailul trebuie sa nu fie asociat altui cont
+    //The mail shouldn't be associed to another account
     else if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users WHERE Email = '$uEmail'"))) {
 
         header("location: ../index.php?error=Email is already used");
         exit();
     }
-    //Introducerea datelor in baza de date
+    //Introducing the data into the data base
     else {
 
         $sql = "INSERT INTO users (ID, FName, LName, Email, Phone, Pass, token) VALUES (NULL,'$fName','$lName','$uEmail','$uPhone','$uPass', '$token')";
         $sql_result = mysqli_query($conn, $sql);
 
-        //Trimiterea emailului de validare a contului
+        //Sending the check-account email
         if ($sql_result) {
             $site_url=$_ENV['SITE_URL'];
             $verification_link="http://".$site_url."/teamhero/uteamtrackr/php_modules/verify-email.php?token=".$token;
@@ -86,7 +87,7 @@ if (isset($_POST['fName']) && isset($_POST['lName']) && isset($_POST['uPhone']) 
             header("location: ../index.php");
         }
 
-        //Reintoarcerea la pagina de login in caz de eroare
+        //In case of an error, the user is sent back to the login page
         else {
 
             header("location: ../index.php");
