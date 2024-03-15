@@ -41,6 +41,7 @@ if (isset($_POST['uEmail']) && isset($_POST['uPass'])) {
                 //Stocarea datelor intr-un tablou de sesiune numit user
                 $_SESSION['auth'] = TRUE;
                 $_SESSION['user'] = [
+                    'id' => $row['ID'],
                     'fName' => $row['FName'],
                     'lName' => $row['LName'],
                     'uEmail' => $row['Email'],
