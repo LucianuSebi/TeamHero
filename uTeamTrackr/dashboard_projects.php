@@ -8,7 +8,7 @@ if (!(empty($_GET['search']))) {
     $sql_result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($sql_result);
 } else
-    $sql = "SELECT * FROM projects WHERE org = '$org'";
+    $sql = "SELECT * FROM projects WHERE org = '12'";
 $sql_result = mysqli_query($conn, $sql);
 ?>
 
@@ -76,17 +76,21 @@ $sql_result = mysqli_query($conn, $sql);
         .categorii {
             width: 100%;
             justify-content: center;
-            flex-wrap: wrap;
+            align-items: center;
             display: flex;
+            flex-direction: column;
             overflow: auto;
             margin-top: 40px;
             margin-bottom: 40px;
         }
 
         .categorie {
-            width: 350px;
-            height: 350px;
-            margin: 30px;
+            width: 90%;
+            height: 100px;
+            margin: 15px;
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
             background-color: #632793;
             text-decoration: none;
             transform: scale(1.0);
@@ -94,22 +98,33 @@ $sql_result = mysqli_query($conn, $sql);
         }
 
         .categorie:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .categorie img {
-            width: inherit;
-            height: inherit;
+            margin-left: 15px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
             object-fit: contain;
             opacity: 90%;
         }
 
-        .categorie p {
+        .titlu-categorie {
+            margin-left: 30px;
             text-align: center;
-            transform: translateY(-50%);
             font-weight: bold;
             color: #000000;
-            font-size: 50px;
+            font-size: 30px;
+        }
+
+        .manage-categorie {
+            margin-left: 40px;
+            text-align: center;
+            font-weight: bold;
+            color: #5F2C67;
+            font-size: 20px;
+            cursor: pointer;
         }
     </style>
 
@@ -206,7 +221,10 @@ $sql_result = mysqli_query($conn, $sql);
                     ?><a class="categorie" href="edit_projects.php?project=<?php echo $row['ID']; ?>"><img
                             id="poza-categorie" src="images/projects/<?php echo $row['ID']; ?>.png" />
                         <p class="titlu-categorie">
-                            <?php echo $row['name']; ?>
+                            <?php echo $row['Name']; ?>
+                        </p>
+                        <p class="manage-categorie">
+                            MANAGE
                         </p>
                     </a>
                     <?php
@@ -214,7 +232,10 @@ $sql_result = mysqli_query($conn, $sql);
                     ?><a class="categorie" href="edit_projects.php?project=<?php echo $row['ID']; ?>"><img
                             id="poza-categorie" src="images/projects/<?php echo $row['ID']; ?>.png" />
                         <p class="titlu-categorie">
-                            <?php echo $row['name']; ?>
+                            <?php echo $row['Name']; ?>
+                        </p>
+                        <p class="manage-categorie">
+                            MANAGE
                         </p>
                     </a>
                     <?php
@@ -241,14 +262,4 @@ $sql_result = mysqli_query($conn, $sql);
             });
         });
     });
-</script>
-
-<script>
-    let categorie = document.getElementById("poza-categorie");
-    var titlu = document.querySelectorAll('.titlu-categorie');
-    for (var i = 0; i < titlu.length; i++) {
-        titlu[i].style.position = "relative";
-        titlu[i].style.top = -categorie.height / 2 + "px";
-    }
-
 </script>

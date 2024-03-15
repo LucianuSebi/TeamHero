@@ -120,7 +120,8 @@ $sql_result = mysqli_query($conn, $sql);
             color: #000000;
             font-size: 20px;
         }
-        .rank-categorie{
+
+        .rank-categorie {
             margin-top: 10px;
             padding-left: 30px;
             padding-right: 30px;
@@ -130,9 +131,10 @@ $sql_result = mysqli_query($conn, $sql);
             font-weight: bold;
             color: gray;
             border-bottom: 1px solid rgb(200, 200, 200);
-            font-size: 20px;
+            font-size: 17px;
         }
-        .manage-categorie{
+
+        .manage-categorie {
             margin-top: 40px;
             margin-bottom: 0px;
             padding-bottom: 50px;
@@ -239,13 +241,18 @@ $sql_result = mysqli_query($conn, $sql);
         <div class="categorii">
             <?php while ($row = mysqli_fetch_assoc($sql_result)) {
                 if (!(empty($_GET['search']))) {
-                    ?><a class="categorie" href="edit_user.php?user=<?php echo $row['ID']; ?>">
-                        <img id="poza-categorie" src="images/users/<?php echo $row['ID']; ?>.png" />
+                    ?><a class="categorie" href="edit_user.php?user=<?php echo $row['ID']; ?>"><img id="poza-categorie"
+                            src="images/users/<?php echo $row['ID']; ?>.png" />
                         <p class="titlu-categorie">
                             <?php echo $row['FName'];
                             echo " " . $row['LName']; ?>
                         </p>
-
+                        <p class="rank-categorie">
+                            <?php echo $row['Rank']; ?>
+                        </p>
+                        <p class="manage-categorie">
+                            MANAGE
+                        </p>
                     </a>
                     <?php
                 } else {
