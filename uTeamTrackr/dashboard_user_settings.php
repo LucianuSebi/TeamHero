@@ -12,7 +12,6 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Settings</title>
     <style>
-        <center>
         body{
             front-family: Arial , sans-serif;
             background color: #4f4f4f;
@@ -45,7 +44,7 @@ session_start();
             color:#fff;
             border: none;
         }
-        </center>
+        
         </style>
 
 </head>
@@ -66,7 +65,7 @@ session_start();
 
             <ul>
                 <li>
-                    <a href="#">Your Project</a>
+                    <a href="# ">Your Project</a>
                 </li>
             </ul>
 
@@ -80,16 +79,16 @@ session_start();
 
             <ul>
                 <li>
-                    <a href="#">Feeds</a>
+                    <a href="# ">Feeds</a>
                 </li>
                 <li>
-                    <a href="#">Your Account</a>
+                    <a href="#  ">Your Account</a>
                 </li>
                 <li>
-                    <a href="#">Monitoring</a>
+                    <a href="# ">Monitoring</a>
                 </li>
                 <li>
-                    <a href="#">Chats</a>
+                    <a href="# ">Chats</a>
                 </li>
             </ul>
 
@@ -103,13 +102,13 @@ session_start();
 
             <ul>
                 <li>
-                    <a href="#">Members</a>
+                    <a href="# ">Members</a>
                 </li>
                 <li>
-                    <a href="#">Projects</a>
+                    <a href="# ">Projects</a>
                 </li>
                 <li>
-                    <a href="#">Organization</a>
+                    <a href="# ">Organization</a>
                 </li>
             </ul>
 
@@ -184,3 +183,4 @@ session_start();
         });
     });
 </script>
+</html>
