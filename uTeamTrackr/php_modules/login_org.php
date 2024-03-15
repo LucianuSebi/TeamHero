@@ -31,6 +31,7 @@ if (isset($_POST['cEmail']) && isset($_POST['cPass'])) {
                         $_SESSION['auth'] = TRUE;
                         $_SESSION['organization'] = [
                             'uEmail' => $urow['uEmail'],
+                            'uOrg' => $urow['Org'],
                             'cEmail' => $crow['Email'],
                             'cName' => $crow['Name'],
                         ];

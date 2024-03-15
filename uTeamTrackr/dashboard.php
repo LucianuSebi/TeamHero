@@ -6,7 +6,7 @@ session_start();
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/f3d0c2ca4c.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -67,10 +67,10 @@ session_start();
 
             <ul>
                 <li>
-                    <a href="#">Members</a>
+                    <a href="dashboard_members.php">Members</a>
                 </li>
                 <li>
-                    <a href="#">Projects</a>
+                    <a href="dashboard_projects.php">Projects</a>
                 </li>
                 <li>
                     <a href="#">Organization</a>
