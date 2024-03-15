@@ -4,11 +4,12 @@ include "db_conn.php";
 $search = mysqli_real_escape_string($conn, $_GET['search']);
 $org = $_SESSION['organization']['uOrg'];
 if (!(empty($_GET['search']))) {
-    $sql = "SELECT * FROM users WHERE FName like '%$search%' OR LName like '%$search%' AND Org= '$org'";;
+    $sql = "SELECT * FROM users WHERE FName like '%$search%' OR LName like '%$search%' AND Org= '$org'";
+    ;
     $sql_result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($sql_result);
 } else
-    $sql = "SELECT * FROM users WHERE org = '$org'";
+    $sql = "SELECT * FROM users WHERE org = '12'";
 $sql_result = mysqli_query($conn, $sql);
 ?>
 
@@ -84,9 +85,13 @@ $sql_result = mysqli_query($conn, $sql);
         }
 
         .categorie {
-            width: 350px;
-            height: 350px;
+            width: 300px;
+            border-radius: 10px;
+            height: auto;
             margin: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             background-color: #632793;
             text-decoration: none;
             transform: scale(1.0);
@@ -94,22 +99,48 @@ $sql_result = mysqli_query($conn, $sql);
         }
 
         .categorie:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .categorie img {
-            width: inherit;
-            height: inherit;
+            background-color: white;
+            margin-top: 50px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
             object-fit: contain;
             opacity: 90%;
         }
 
-        .categorie p {
+        .titlu-categorie {
+            margin-top: 30px;
+            margin-bottom: 0px;
             text-align: center;
-            transform: translateY(-50%);
             font-weight: bold;
             color: #000000;
-            font-size: 50px;
+            font-size: 20px;
+        }
+        .rank-categorie{
+            margin-top: 10px;
+            padding-left: 30px;
+            padding-right: 30px;
+            padding-bottom: 7px;
+            margin-bottom: 0px;
+            text-align: center;
+            font-weight: bold;
+            color: gray;
+            border-bottom: 1px solid rgb(200, 200, 200);
+            font-size: 20px;
+        }
+        .manage-categorie{
+            margin-top: 40px;
+            margin-bottom: 0px;
+            padding-bottom: 50px;
+            text-align: center;
+            font-weight: bold;
+            color: #5F2C67;
+            font-size: 20px;
+            cursor: pointer;
         }
     </style>
 
@@ -207,14 +238,14 @@ $sql_result = mysqli_query($conn, $sql);
         </div>
         <div class="categorii">
             <?php while ($row = mysqli_fetch_assoc($sql_result)) {
-
                 if (!(empty($_GET['search']))) {
-                    ?><a class="categorie" href="edit_user.php?user=<?php echo $row['ID']; ?>"><img id="poza-categorie"
-                            src="images/users/<?php echo $row['ID']; ?>.png" />
+                    ?><a class="categorie" href="edit_user.php?user=<?php echo $row['ID']; ?>">
+                        <img id="poza-categorie" src="images/users/<?php echo $row['ID']; ?>.png" />
                         <p class="titlu-categorie">
                             <?php echo $row['FName'];
                             echo " " . $row['LName']; ?>
                         </p>
+
                     </a>
                     <?php
                 } else {
@@ -223,6 +254,12 @@ $sql_result = mysqli_query($conn, $sql);
                         <p class="titlu-categorie">
                             <?php echo $row['FName'];
                             echo " " . $row['LName']; ?>
+                        </p>
+                        <p class="rank-categorie">
+                            <?php echo $row['Rank']; ?>
+                        </p>
+                        <p class="manage-categorie">
+                            MANAGE
                         </p>
                     </a>
                     <?php
@@ -249,14 +286,4 @@ $sql_result = mysqli_query($conn, $sql);
             });
         });
     });
-</script>
-
-<script>
-    let categorie = document.getElementById("poza-categorie");
-    var titlu = document.querySelectorAll('.titlu-categorie');
-    for (var i = 0; i < titlu.length; i++) {
-        titlu[i].style.position = "relative";
-        titlu[i].style.top = -categorie.height / 2 + "px";
-    }
-
 </script>
