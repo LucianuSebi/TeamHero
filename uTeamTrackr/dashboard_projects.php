@@ -18,115 +18,11 @@ $sql_result = mysqli_query($conn, $sql);
 
 <head>
     <link rel="stylesheet" href="css/style.css">
+    <link rel ="stylesheet" href="css/dashboard_projects.css">
     <script src="https://kit.fontawesome.com/f3d0c2ca4c.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Start-up Page</title>
-    <style>
-        .pageContent {
-            overflow: auto;
-            position: absolute;
-            left: 15%;
-            top: 0%;
-            width: 85%;
-            height: 100%;
-            background-color: #cfadfc;
-            background-size: cover;
-            display: block;
-        }
-
-        .searchForm {
-            width: 600px;
-            max-width: 70%;
-            background: rgba(299, 39, 147, 0.2);
-            display: flex;
-            align-items: center;
-            border-radius: 60px;
-            padding: 10px 20px;
-            backdrop-filter: blur(4px) saturate(180%);
-        }
-
-        .searchForm input {
-            background: transparent;
-            flex: 1;
-            border: 0;
-            outline: none;
-            padding: 24px 20px;
-            font-size: 20px;
-        }
-
-        .searchForm button {
-            border: 0;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            cursor: pointer;
-            background-color: white;
-        }
-
-        .search-box {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 40%;
-            padding-bottom: 20px;
-        }
-
-        .categorii {
-            width: 100%;
-            justify-content: center;
-            align-items: center;
-            display: flex;
-            flex-direction: column;
-            overflow: auto;
-            margin-top: 40px;
-            margin-bottom: 40px;
-        }
-
-        .categorie {
-            width: 90%;
-            height: 100px;
-            margin: 15px;
-            display: flex;
-            align-items: center;
-            flex-wrap: nowrap;
-            background-color: #632793;
-            text-decoration: none;
-            transform: scale(1.0);
-            transition: transform 0.3s ease;
-        }
-
-        .categorie:hover {
-            transform: scale(1.05);
-        }
-
-        .categorie img {
-            margin-left: 15px;
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            object-fit: contain;
-            opacity: 90%;
-        }
-
-        .titlu-categorie {
-            margin-left: 30px;
-            text-align: center;
-            font-weight: bold;
-            color: #000000;
-            font-size: 30px;
-        }
-
-        .manage-categorie {
-            margin-left: 40px;
-            text-align: center;
-            font-weight: bold;
-            color: #5F2C67;
-            font-size: 20px;
-            cursor: pointer;
-        }
-    </style>
 
 </head>
 

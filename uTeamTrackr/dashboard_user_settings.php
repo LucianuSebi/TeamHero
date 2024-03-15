@@ -14,7 +14,7 @@ session_start();
     <style>
         body{
             front-family: Arial , sans-serif;
-            background color: #4f4f4f;
+            background-color: #4f4f4f;
             margin: 100;
             padding: 0;
         }
