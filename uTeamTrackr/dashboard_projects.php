@@ -18,7 +18,7 @@ $sql_result = mysqli_query($conn, $sql);
 
 <head>
     <link rel="stylesheet" href="css/style.css">
-    <link rel ="stylesheet" href="css/dashboard_projects.css">
+    <link rel="stylesheet" href="css/dashboard_projects.css">
     <script src="https://kit.fontawesome.com/f3d0c2ca4c.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -113,29 +113,17 @@ $sql_result = mysqli_query($conn, $sql);
         <div class="categorii">
             <?php while ($row = mysqli_fetch_assoc($sql_result)) {
 
-                if (!(empty($_GET['search']))) {
-                    ?><a class="categorie" href="edit_projects.php?project=<?php echo $row['ID']; ?>"><img
-                            id="poza-categorie" src="images/projects/<?php echo $row['ID']; ?>.png" />
-                        <p class="titlu-categorie">
-                            <?php echo $row['Name']; ?>
-                        </p>
-                        <p class="manage-categorie">
-                            MANAGE
-                        </p>
-                    </a>
-                    <?php
-                } else {
-                    ?><a class="categorie" href="edit_projects.php?project=<?php echo $row['ID']; ?>"><img
-                            id="poza-categorie" src="images/projects/<?php echo $row['ID']; ?>.png" />
-                        <p class="titlu-categorie">
-                            <?php echo $row['Name']; ?>
-                        </p>
-                        <p class="manage-categorie">
-                            MANAGE
-                        </p>
-                    </a>
-                    <?php
-                }
+
+                ?><a class="categorie" href="edit_projects.php?project=<?php echo $row['ID']; ?>"><img
+                        id="poza-categorie" src="images/projects/<?php echo $row['ID']; ?>.png" />
+                    <p class="titlu-categorie">
+                        <?php echo $row['Name']; ?>
+                    </p>
+                    <p class="manage-categorie">
+                        MANAGE
+                    </p>
+                </a>
+                <?php
             } ?>
         </div>
     </div>
