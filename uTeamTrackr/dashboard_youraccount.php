@@ -120,7 +120,7 @@ $row = mysqli_fetch_array($sql_result);
         </div>
         <div class="section">
             <h1>Personal information</h1>
-            <form id="personal-information" style="height: 300px;" action="">
+            <form id="personal-information" style="height: 300px;" action="php_modules/change_account_settings.php?action=PersonalInformation">
                 <div class="input-group">
                     <label for="fname">First Name</label>
                     <input type="text" id="fname" name="fname" placeholder="<?php echo $row['FName']; ?>">
