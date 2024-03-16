@@ -5,8 +5,6 @@ $id = $_SESSION['user']['id'];
 $sql = "SELECT * FROM users WHERE ID = '25'";
 $sql_result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($sql_result);
-$skills = unserialize($row['Skills']);
-$endorsements = unserialize($row['Endorsements']);
 ?>
 
 
@@ -176,13 +174,30 @@ $endorsements = unserialize($row['Endorsements']);
             <div class="section-container">
                 <div class="skills">
                     <h1>Active skills</h1>
-                    <?php foreach ($skills as $skill) { ?>
-                        <p>
-                            <?php echo $skill . " - " . $endorsements['$skill']; ?>
-                        </p>
-                    <?php } ?>
+                    <div class="skill">
+                        <div class="skill-section">
+                            <p>
+                                Skill Name: PHP
+                            </p>
+                        </div>
+                        <div class="skill-section">
+                            <p>
+                                Endorsed by 6 people
+                            </p>
+                        </div>
+                        <div class="skill-section">
+                            <p>
+                                Verified: no
+                            </p>
+                        </div>
+                        <div class="skill-section">
+                            <form id="" action="" style="width: 0px;height: 0px;"></form>
+                            <button type="submit" form="">Delete Skill</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="add-skills">
+                    <h1>Add Skills</h1>
                     <form id="skill-information" style="height: auto;min-height: 300px;" action="">
                         <select id="multi_option" multiple name="skills[]" placeholder="Add Skills"
                             data-silent-initial-value-set="false">
