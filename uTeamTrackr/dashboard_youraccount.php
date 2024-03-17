@@ -125,10 +125,6 @@ $row = mysqli_fetch_array($sql_result);
                     <p>
                         <?php echo $row['FName'] . " " . $row['LName'] ?>
                     </p>
-                    <p>zdadas</p>
-                    <p>zdadas</p>
-                    <p>zdadas</p>
-                    <p>zdadas</p>
 
                 </div>
             </form>
@@ -230,12 +226,13 @@ $row = mysqli_fetch_array($sql_result);
                         <input type="hidden" name="action" value="addSkill">
                         <select id="multi_option" multiple name="skills" placeholder="Add Skills"
                             data-silent-initial-value-set="false">
-                            <option value="1">HTML</option>
-                            <option value="2">CSS</option>
-                            <option value="3">JavaScript</option>
-                            <option value="4">Python</option>
-                            <option value="5">JAVA</option>
-                            <option value="6">PHP</option>
+                            <?php 
+                            $orgId= $row['Org'];
+                            $sql="SELECT * FROM skills WHERE Org = '$orgId'";
+                            $sql_result=mysqli_query($conn,$sql);
+                            while ($rowOrgSkills = mysqli_fetch_assoc($sql_result)){ ?>
+                                <option value="<?php echo $rowOrgSkills['ID']; ?>"><?php echo $rowOrgSkills['Name']; ?></option>
+                            <?php } ?>
                         </select>
                     </form>
                     <button type="submit" form="skill-information">Save Changes</button>
