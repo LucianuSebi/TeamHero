@@ -235,9 +235,10 @@ $row = mysqli_fetch_array($sql_result);
                             <?php } ?>
                         </select>
                     </form>
-                    <button type="submit" form="skill-information">Save Changes</button>
+                    
                 </div>
             </div>
+            <button type="submit" form="skill-information">Save Changes</button>
         </div>
     </div>
 
