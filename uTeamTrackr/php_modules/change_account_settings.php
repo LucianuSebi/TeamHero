@@ -99,7 +99,7 @@ if (isset($_POST['action'])) {
     } else if ($action == "addSkill") {
         if (isset($_POST['skills'])) {
 
-            $newSkills = $_POST['skills'];
+            $newSkills = mysqli_real_escape_string($conn, $_POST['skills']);;
             $newSkills = explode(',', $newSkills);
 
             $sql = "SELECT * FROM users WHERE ID = '$id'";
@@ -126,6 +126,26 @@ if (isset($_POST['action'])) {
                 header("location: ../dashboard_youraccount.php");
                 exit();
             }
+        }
+    } else if($action == "removeSkill"){
+        if (isset($_POST['skill'])) {
+
+            $skill=mysqli_real_escape_string($conn, $_POST['skill']);
+
+            $sql = "SELECT * FROM users WHERE ID = '$id'";
+            $sql_result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_array($sql_result);
+
+            $skill= array($skill);
+            $oldSkills = unserialize($row['Skills']);
+            $newSkills = array_diff($oldSkills,$skill);
+            $skills = serialize($newSkills);
+
+            $sql = "UPDATE users SET Skills= '$skills' WHERE id ='$id'";
+            $sql_result = mysqli_query($conn, $sql);
+
+            header("location: ../dashboard_youraccount.php");
+            exit();
         }
     }
 }

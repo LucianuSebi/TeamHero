@@ -110,22 +110,25 @@ $row = mysqli_fetch_array($sql_result);
     <div class="pageContent">
         <h1>My Profile</h1>
         <div class="section" style="height: 180px;">
-            <form id="change-photo" style="height: 300px; flex-direction: row;" action="php_modules/change_account_settings.php" enctype="multipart/form-data" method="post">
+            <form id="change-photo" style="height: 300px; flex-direction: row;"
+                action="php_modules/change_account_settings.php" enctype="multipart/form-data" method="post">
                 <div class="image-selector">
-                    <?php if(file_exists("images/users/".$row['Img'].".png")){ ?>
+                    <?php if (file_exists("images/users/" . $row['Img'] . ".png")) { ?>
                         <img src="images/users/<?php echo $row['Img']; ?>.png" alt="">
-                    <?php } else {?>
+                    <?php } else { ?>
                         <img src="images/users/default.png" alt="">
                     <?php } ?>
                     <input type="file" name="photo" required>
                     <input type="hidden" name="action" value="Photo">
                 </div>
                 <div class="general-info">
-                        <p><?php echo $row['FName']." ".$row['LName']?></p>
-                        <p>zdadas</p>
-                        <p>zdadas</p>
-                        <p>zdadas</p>
-                        <p>zdadas</p>
+                    <p>
+                        <?php echo $row['FName'] . " " . $row['LName'] ?>
+                    </p>
+                    <p>zdadas</p>
+                    <p>zdadas</p>
+                    <p>zdadas</p>
+                    <p>zdadas</p>
 
                 </div>
             </form>
@@ -134,8 +137,8 @@ $row = mysqli_fetch_array($sql_result);
         </div>
         <div class="section">
             <h1>Personal information</h1>
-            <form id="personal-information" style="height: 300px;"
-                action="php_modules/change_account_settings.php" method="post">
+            <form id="personal-information" style="height: 300px;" action="php_modules/change_account_settings.php"
+                method="post">
                 <input type="hidden" name="action" value="PersonalInformation">
                 <div class="input-group">
                     <label for="fname">First Name</label>
@@ -163,8 +166,8 @@ $row = mysqli_fetch_array($sql_result);
         </div>
         <div class="section">
             <h1>Adress</h1>
-            <form id="adress-information" style="height: 200px;"
-                action="php_modules/change_account_settings.php" method="post">
+            <form id="adress-information" style="height: 200px;" action="php_modules/change_account_settings.php"
+                method="post">
                 <input type="hidden" name="action" value="Adress">
                 <div class="input-group">
                     <label for="country">Country</label>
@@ -192,31 +195,38 @@ $row = mysqli_fetch_array($sql_result);
             <div class="section-container">
                 <div class="skills">
                     <h1>Active skills</h1>
-                    <div class="skill">
-                        <div class="skill-section">
-                            <p>
-                                Skill Name: PHP
-                            </p>
+                    <?php $skills = unserialize($row['Skills']);
+                    foreach ($skills as $skill) {
+                        $sql="SELECT * FROM skills WHERE ID = '$skill'";
+                        $sql_result=mysqli_query($conn,$sql);
+                        $rowSkill= mysqli_fetch_array($sql_result); ?>
+                        <div class="skill">
+                            <div class="skill-section">
+                                <p>
+                                    Skill Name: <?php echo $rowSkill['Name']; ?> 
+                                </p>
+                            </div>
+                            <div class="skill-section">
+                                <p>
+                                    Endorsed by <?php echo mysqli_num_rows(mysqli_query($conn,"SELECT * FROM endorsements WHERE Skill='$skill' AND Recipient = '$id'")); ?> people
+                                </p>
+                            </div>
+                            <div class="skill-section">
+                                <p>
+                                    Verified: <?php if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM verified_skills WHERE Skill='$skill' AND Recipient = '$id'"))==1) echo "yes"; else echo"no";?>
+                                </p>
+                            </div>
+                            <div class="skill-section">
+                                <form id="<?php echo $skill; ?>" action="php_modules/change_account_settings.php" method="post" style="width: 0px;height: 0px;"><input type="hidden" name="action" value="removeSkill"><input type="hidden" name="skill" value="<?php echo $skill; ?>"></form>
+                                <button type="submit" form="<?php echo $skill; ?>">Delete Skill</button>
+                            </div>
                         </div>
-                        <div class="skill-section">
-                            <p>
-                                Endorsed by 6 people
-                            </p>
-                        </div>
-                        <div class="skill-section">
-                            <p>
-                                Verified: no
-                            </p>
-                        </div>
-                        <div class="skill-section">
-                            <form id="" action="" style="width: 0px;height: 0px;"></form>
-                            <button type="submit" form="">Delete Skill</button>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
                 <div class="add-skills">
                     <h1>Add Skills</h1>
-                    <form id="skill-information" style="height: auto;min-height: 300px;" action="php_modules/change_account_settings.php" method="post">
+                    <form id="skill-information" style="height: auto;min-height: 300px;"
+                        action="php_modules/change_account_settings.php" method="post">
                         <input type="hidden" name="action" value="addSkill">
                         <select id="multi_option" multiple name="skills" placeholder="Add Skills"
                             data-silent-initial-value-set="false">
