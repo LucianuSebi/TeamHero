@@ -2,6 +2,7 @@
 error_reporting(E_ERROR | E_PARSE);
 include "db_conn.php";
 $id = $_SESSION['user']['id'];
+//CHANGE "25" TO $id TO DISABLE DEBUG
 $sql = "SELECT * FROM users WHERE ID = '25'";
 $sql_result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($sql_result);
@@ -19,7 +20,7 @@ $row = mysqli_fetch_array($sql_result);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Start-up Page</title>
-    
+
 
 </head>
 
@@ -108,19 +109,33 @@ $row = mysqli_fetch_array($sql_result);
 
     <div class="pageContent">
         <h1>My Profile</h1>
-        <div class="section" style="height: 80px;">
-            <form id="personal-information" style="height: 300px;" action="">
-                <img src="images/users/<?php echo $row['ID']; ?>.png" alt="">
+        <div class="section" style="height: 180px;">
+            <form id="change-photo" style="height: 300px; flex-direction: row;"
+                action="php_modules/change_account_settings.php" enctype="multipart/form-data" method="post">
+                <div class="image-selector">
+                    <?php if (file_exists("images/users/" . $row['Img'] . ".png")) { ?>
+                        <img src="images/users/<?php echo $row['Img']; ?>.png" alt="">
+                    <?php } else { ?>
+                        <img src="images/users/default.png" alt="">
+                    <?php } ?>
+                    <input type="file" name="photo" required>
+                    <input type="hidden" name="action" value="Photo">
+                </div>
                 <div class="general-info">
+                    <p>
+                        <?php echo $row['FName'] . " " . $row['LName'] ?>
+                    </p>
 
                 </div>
             </form>
-            <button type="submit" form="personal-information">Save Changes</button>
+            <button type="submit" form="change-photo">Save Changes</button>
 
         </div>
         <div class="section">
             <h1>Personal information</h1>
-            <form id="personal-information" style="height: 300px;" action="">
+            <form id="personal-information" style="height: 300px;" action="php_modules/change_account_settings.php"
+                method="post">
+                <input type="hidden" name="action" value="PersonalInformation">
                 <div class="input-group">
                     <label for="fname">First Name</label>
                     <input type="text" id="fname" name="fname" placeholder="<?php echo $row['FName']; ?>">
@@ -147,7 +162,9 @@ $row = mysqli_fetch_array($sql_result);
         </div>
         <div class="section">
             <h1>Adress</h1>
-            <form id="adress-information" style="height: 200px;" action="">
+            <form id="adress-information" style="height: 200px;" action="php_modules/change_account_settings.php"
+                method="post">
+                <input type="hidden" name="action" value="Adress">
                 <div class="input-group">
                     <label for="country">Country</label>
                     <input type="text" id="country" name="country" placeholder="<?php echo $row['Country']; ?>">
@@ -174,44 +191,54 @@ $row = mysqli_fetch_array($sql_result);
             <div class="section-container">
                 <div class="skills">
                     <h1>Active skills</h1>
-                    <div class="skill">
-                        <div class="skill-section">
-                            <p>
-                                Skill Name: PHP
-                            </p>
+                    <?php $skills = unserialize($row['Skills']);
+                    foreach ($skills as $skill) {
+                        $sql="SELECT * FROM skills WHERE ID = '$skill'";
+                        $sql_result=mysqli_query($conn,$sql);
+                        $rowSkill= mysqli_fetch_array($sql_result); ?>
+                        <div class="skill">
+                            <div class="skill-section">
+                                <p>
+                                    Skill Name: <?php echo $rowSkill['Name']; ?> 
+                                </p>
+                            </div>
+                            <div class="skill-section">
+                                <p>
+                                    Endorsed by <?php echo mysqli_num_rows(mysqli_query($conn,"SELECT * FROM endorsements WHERE Skill='$skill' AND Recipient = '$id'")); ?> people
+                                </p>
+                            </div>
+                            <div class="skill-section">
+                                <p>
+                                    Verified: <?php if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM verified_skills WHERE Skill='$skill' AND Recipient = '$id'"))==1) echo "yes"; else echo"no";?>
+                                </p>
+                            </div>
+                            <div class="skill-section">
+                                <form id="<?php echo $skill; ?>" action="php_modules/change_account_settings.php" method="post" style="width: 0px;height: 0px;"><input type="hidden" name="action" value="removeSkill"><input type="hidden" name="skill" value="<?php echo $skill; ?>"></form>
+                                <button type="submit" form="<?php echo $skill; ?>">Delete Skill</button>
+                            </div>
                         </div>
-                        <div class="skill-section">
-                            <p>
-                                Endorsed by 6 people
-                            </p>
-                        </div>
-                        <div class="skill-section">
-                            <p>
-                                Verified: no
-                            </p>
-                        </div>
-                        <div class="skill-section">
-                            <form id="" action="" style="width: 0px;height: 0px;"></form>
-                            <button type="submit" form="">Delete Skill</button>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
                 <div class="add-skills">
                     <h1>Add Skills</h1>
-                    <form id="skill-information" style="height: auto;min-height: 300px;" action="">
-                        <select id="multi_option" multiple name="skills[]" placeholder="Add Skills"
+                    <form id="skill-information" style="height: auto;min-height: 300px;"
+                        action="php_modules/change_account_settings.php" method="post">
+                        <input type="hidden" name="action" value="addSkill">
+                        <select id="multi_option" multiple name="skills" placeholder="Add Skills"
                             data-silent-initial-value-set="false">
-                            <option value="1">HTML</option>
-                            <option value="2">CSS</option>
-                            <option value="3">JavaScript</option>
-                            <option value="4">Python</option>
-                            <option value="5">JAVA</option>
-                            <option value="6">PHP</option>
+                            <?php 
+                            $orgId= $row['Org'];
+                            $sql="SELECT * FROM skills WHERE Org = '$orgId'";
+                            $sql_result=mysqli_query($conn,$sql);
+                            while ($rowOrgSkills = mysqli_fetch_assoc($sql_result)){ ?>
+                                <option value="<?php echo $rowOrgSkills['ID']; ?>"><?php echo $rowOrgSkills['Name']; ?></option>
+                            <?php } ?>
                         </select>
                     </form>
-                    <button type="submit" form="skill-information">Save Changes</button>
+                    
                 </div>
             </div>
+            <button type="submit" form="skill-information">Save Changes</button>
         </div>
     </div>
 
