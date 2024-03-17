@@ -19,7 +19,7 @@ $row = mysqli_fetch_array($sql_result);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Start-up Page</title>
-    
+
 
 </head>
 
@@ -108,19 +108,29 @@ $row = mysqli_fetch_array($sql_result);
 
     <div class="pageContent">
         <h1>My Profile</h1>
-        <div class="section" style="height: 80px;">
-            <form id="personal-information" style="height: 300px;" action="">
-                <img src="images/users/<?php echo $row['ID']; ?>.png" alt="">
+        <div class="section" style="height: 180px;">
+            <form id="change-photo" style="height: 300px;" action="php_modules/change_account_settings.php" enctype="multipart/form-data" method="post">
+                <div class="image-selector">
+                    <?php if(file_exists("images/users/".$row['ID'].".png")){ ?>
+                        <img src="images/users/<?php echo $row['ID']; ?>.png" alt="">
+                    <?php } else {?>
+                        <img src="images/users/default.png" alt="">
+                    <?php } ?>
+                    <input type="file" name="photo" required>
+                    <input type="hidden" name="action" value="Photo">
+                </div>
                 <div class="general-info">
 
                 </div>
             </form>
-            <button type="submit" form="personal-information">Save Changes</button>
+            <button type="submit" form="change-photo">Save Changes</button>
 
         </div>
         <div class="section">
             <h1>Personal information</h1>
-            <form id="personal-information" style="height: 300px;" action="php_modules/change_account_settings.php?action=PersonalInformation">
+            <form id="personal-information" style="height: 300px;"
+                action="php_modules/change_account_settings.php" method="post">
+                <input type="hidden" name="action" value="PersonalInformation">
                 <div class="input-group">
                     <label for="fname">First Name</label>
                     <input type="text" id="fname" name="fname" placeholder="<?php echo $row['FName']; ?>">
@@ -147,7 +157,9 @@ $row = mysqli_fetch_array($sql_result);
         </div>
         <div class="section">
             <h1>Adress</h1>
-            <form id="adress-information" style="height: 200px;" action="">
+            <form id="adress-information" style="height: 200px;"
+                action="php_modules/change_account_settings.php" method="post">
+                <input type="hidden" name="action" value="Adress">
                 <div class="input-group">
                     <label for="country">Country</label>
                     <input type="text" id="country" name="country" placeholder="<?php echo $row['Country']; ?>">

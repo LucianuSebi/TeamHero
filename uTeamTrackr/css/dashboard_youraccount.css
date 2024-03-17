@@ -157,4 +157,16 @@
     padding: 0 10px 0 10px;
     font-size: 23px;
 }
-
+.image-selector{
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+.image-selector img{
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 2px solid gray;
+    object-fit: cover;
+}
