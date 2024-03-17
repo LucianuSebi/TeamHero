@@ -5,7 +5,7 @@ session_start();
 
 if (isset($_POST['action'])) {
     $action = mysqli_real_escape_string($conn, $_POST['action']);
-    $id = 12;//$_SESSION['user']['ID'];
+    $id = 25;//$_SESSION['user']['ID'];
 
     if ($action == "PersonalInformation") {
         if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['phone']) && isset($_POST['bio'])) {

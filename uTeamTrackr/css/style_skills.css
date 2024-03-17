@@ -37,7 +37,11 @@
     cursor: pointer;
     transition: all 0.4s ease;
 }
-
+.section button:hover {
+    background-color: grey;
+    color: black;
+    border-color: black;
+}
 .section h1 {
     padding: 20px;
     width: 90%;
@@ -98,4 +102,25 @@
     height: 90%;
     padding: 0 10px 0 10px;
     font-size: 23px;
+}
+
+.add-skill{
+    padding: 10px;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    border-bottom: 2px solid gray;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.add-skill h2{
+    padding: 10px 20px 10px 0;
+}
+.add-skill input {
+    background-color: rgba(200, 200, 200, 0.9);
+    border: none;
+    border-radius: 5px;
+    height: 30px;
+    font-size: 18px;
 }
