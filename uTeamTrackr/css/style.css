@@ -110,3 +110,14 @@ body {
 .collapsed {
   display: none;
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.child {
+
+  /* Center horizontally*/
+  margin: 0 auto;
+}
