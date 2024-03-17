@@ -5,7 +5,7 @@ session_start();
 
 if (isset($_POST['action'])) {
     $action = mysqli_real_escape_string($conn, $_POST['action']);
-    $id = $_SESSION['user']['ID'];
+    $id = 25;//$_SESSION['user']['ID'];
 
     if ($action == "PersonalInformation") {
         if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['phone']) && isset($_POST['bio'])) {
@@ -66,7 +66,7 @@ if (isset($_POST['action'])) {
 
 
         }
-    } else if ($action = "Photo") {
+    } else if ($action == "Photo") {
 
         $file = $_FILES['photo'];
         $fileName = $_FILES['photo']['name'];
@@ -96,11 +96,38 @@ if (isset($_POST['action'])) {
 
 
 
+    } else if ($action == "addSkill") {
+        if (isset($_POST['skills'])) {
+
+            $newSkills = $_POST['skills'];
+            $newSkills = explode(',', $newSkills);
+
+            $sql = "SELECT * FROM users WHERE ID = '$id'";
+            $sql_result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_array($sql_result);
+
+            $oldSkills = unserialize($row['Skills']);
+
+            if (!empty($oldSkills)) {
+                $skills = array_merge(array_diff($oldSkills, $newSkills), $newSkills);
+                $skills = serialize($skills);
+
+                $sql = "UPDATE users SET Skills= '$skills' WHERE id ='$id'";
+                $sql_result = mysqli_query($conn, $sql);
+
+                header("location: ../dashboard_youraccount.php");
+                exit();
+            } else {
+                $skills = serialize($newSkills);
+
+                $sql = "UPDATE users SET Skills= '$skills' WHERE id ='$id'";
+                $sql_result = mysqli_query($conn, $sql);
+
+                header("location: ../dashboard_youraccount.php");
+                exit();
+            }
+        }
     }
-
-    //header("location: ../dashboard_youraccount.php");
-    exit();
 }
-
 header("location: ../dashboard_youraccount.php");
 exit();

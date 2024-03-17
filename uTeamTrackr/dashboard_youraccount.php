@@ -2,6 +2,7 @@
 error_reporting(E_ERROR | E_PARSE);
 include "db_conn.php";
 $id = $_SESSION['user']['id'];
+//CHANGE "25" TO $id TO DISABLE DEBUG
 $sql = "SELECT * FROM users WHERE ID = '25'";
 $sql_result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($sql_result);
@@ -109,10 +110,10 @@ $row = mysqli_fetch_array($sql_result);
     <div class="pageContent">
         <h1>My Profile</h1>
         <div class="section" style="height: 180px;">
-            <form id="change-photo" style="height: 300px;" action="php_modules/change_account_settings.php" enctype="multipart/form-data" method="post">
+            <form id="change-photo" style="height: 300px; flex-direction: row;" action="php_modules/change_account_settings.php" enctype="multipart/form-data" method="post">
                 <div class="image-selector">
-                    <?php if(file_exists("images/users/".$row['ID'].".png")){ ?>
-                        <img src="images/users/<?php echo $row['ID']; ?>.png" alt="">
+                    <?php if(file_exists("images/users/".$row['Img'].".png")){ ?>
+                        <img src="images/users/<?php echo $row['Img']; ?>.png" alt="">
                     <?php } else {?>
                         <img src="images/users/default.png" alt="">
                     <?php } ?>
@@ -120,6 +121,11 @@ $row = mysqli_fetch_array($sql_result);
                     <input type="hidden" name="action" value="Photo">
                 </div>
                 <div class="general-info">
+                        <p><?php echo $row['FName']." ".$row['LName']?></p>
+                        <p>zdadas</p>
+                        <p>zdadas</p>
+                        <p>zdadas</p>
+                        <p>zdadas</p>
 
                 </div>
             </form>
@@ -210,8 +216,9 @@ $row = mysqli_fetch_array($sql_result);
                 </div>
                 <div class="add-skills">
                     <h1>Add Skills</h1>
-                    <form id="skill-information" style="height: auto;min-height: 300px;" action="">
-                        <select id="multi_option" multiple name="skills[]" placeholder="Add Skills"
+                    <form id="skill-information" style="height: auto;min-height: 300px;" action="php_modules/change_account_settings.php" method="post">
+                        <input type="hidden" name="action" value="addSkill">
+                        <select id="multi_option" multiple name="skills" placeholder="Add Skills"
                             data-silent-initial-value-set="false">
                             <option value="1">HTML</option>
                             <option value="2">CSS</option>

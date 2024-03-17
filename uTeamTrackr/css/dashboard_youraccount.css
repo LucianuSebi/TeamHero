@@ -161,6 +161,7 @@
     width: fit-content;
     display: flex;
     flex-direction: column;
+    border-right: 2px solid gray;
 }
 .image-selector img{
     height: 120px;
@@ -169,4 +170,18 @@
     margin-bottom: 10px;
     border: 2px solid gray;
     object-fit: cover;
+}
+
+.general-info{
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.general-info p{
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+    margin: 0;
+    padding: 3px 10px 3px 20px;
 }
