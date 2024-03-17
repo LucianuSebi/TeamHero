@@ -9,7 +9,7 @@ body {
   padding: 0;
   display: flex;
   height: 100vh;
-  background: linear-gradient(to bottom, #3494e6, #ec6ead);
+  background: white;
 
 }
 
@@ -19,7 +19,7 @@ body {
   width: 15%;
   top: 0px;
   left: 0px;
-  background-color: #2c2666;
+  background-color: #090056;
   display: flex;
   align-items: center;
   flex-direction: column;
