@@ -8,7 +8,7 @@ $dotenv = Dotenv\Dotenv::createImmutable("../../");
 $dotenv->load();
 
 
-$sname= $_ENV['DATABASE_HOSTNAME'];
+$sname= "localhost";
 $uname= $_ENV['DATABASE_USERNAME'];
 $password= $_ENV['DATABASE_PASSWORD'];
 $db_name = $_ENV['DATABASE_NAME'];
