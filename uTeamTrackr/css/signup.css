@@ -1,0 +1,138 @@
+body {
+    margin: 0;
+    background-color: #131418;
+}
+
+.container {
+    width: 100%;
+    position: absolute;
+    display: flex;
+    height: 170vh;
+    flex-direction: column;
+    top: 0;
+    background-size: cover;
+    background-image: url("../images/background.png");
+    left: 0;
+}
+
+.form-box{
+    width: 300px;
+    position: absolute;
+    top: 5%;
+    left: 48%;
+    transform: translate(-50%, -0%);
+    background: transparent;
+    padding: 50px 60px 20px;
+    border: 2px solid white;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.form-box h1{
+    font-size: 30px;
+    margin-bottom: 60px;
+    color: white;
+    position: relative;
+}
+.form-box h2{
+    color: white;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.form-box h1::after{
+    content: '';
+    height: 4px;
+    width: 40px;
+    border-radius: 3px;
+    background: white;
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.input-field{
+    background: #eaeaea;
+    opacity: 0.8;
+    margin:  15px 0;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    max-height: 65px;
+    transition: max-height 0.5s;
+    overflow: hidden;
+}
+
+input{
+    width: 100%;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    padding: 18px 15px;
+}
+
+.input-field i{
+    margin-left: 15px;
+    color: #999;
+}
+
+form p{
+    margin-top: 20px;
+    text-align: left;
+    color: white;
+    font-size: 13px;
+}
+
+form p a{
+    text-decoration: none;
+    color: rgb(80, 106, 162);
+}
+
+.btn-field{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.btn-field button{
+    flex-basis: 48%;
+    background: #000000;
+    color: #fff;
+    height: 40px;
+    border-radius: 20px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    transition: background 1s;
+}
+
+.input-group{
+    height: 440px;
+    transition: max-height 0.5s;
+}
+
+.btn-field button.disable{
+    background: #eaeaea;
+    color: #555;
+}
+
+.btn-connect{
+    width: 100%;
+    position: inherit;
+    display: block;
+    margin-top: 20px;
+}
+
+.btn-connect button{
+    flex-basis: 48%;
+    background: #000000;
+    color: #fff;
+    height: 40px;
+    width: 100%;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    transition: background 1s;
+    border-radius: 5px;
+}

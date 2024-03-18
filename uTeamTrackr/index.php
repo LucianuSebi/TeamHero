@@ -26,15 +26,15 @@ session_start();
                 <a href="#contact">Contact</a>
             </div>
             <div class="topRight">
-                <a href="register.php" class="signUp">Get Started</a>
-                <a href="login.php">Login</a>
+                <a href="signup.php" class="signUp">Get Started</a>
+                <a href="signup.php">Login</a>
             </div>
         </div>
         <div class="section" style="">
             <img src="images/text1.png" alt="">
             <div class="signUpBar">
                 <p>The Future's Right Here...</p>
-                <div class="signUpBtn"><a href="register.php">Sign Up Now</a></div>
+                <div class="signUpBtn"><a href="signup.php">Sign Up Now</a></div>
             </div>
         </div>
         <div class="section" id="about">
