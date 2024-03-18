@@ -30,7 +30,7 @@
                     <a href="# ">Feeds</a>
                 </li>
                 <li>
-                    <a href="#  ">Your Account</a>
+                    <a href="dashboard_youraccount.php">Your Account</a>
                 </li>
                 <li>
                     <a href="# ">Monitoring</a>
@@ -50,10 +50,13 @@
 
             <ul>
                 <li>
-                    <a href="# ">Members</a>
+                    <a href="dashboard_members.php">Members</a>
                 </li>
                 <li>
-                    <a href="# ">Projects</a>
+                    <a href="dashboard_skills.php">Skills</a>
+                </li>
+                <li>
+                    <a href="dashboard_projects.php">Projects</a>
                 </li>
                 <li>
                     <a href="# ">Organization</a>
@@ -67,12 +70,6 @@
             <ul>
                 <li>
                     <a href="">Support</a>
-                </li>
-                <li>
-                    <a href="">Settings</a>
-                </li>
-                <li>
-                    <a href="">What's New</a>
                 </li>
             </ul>
 

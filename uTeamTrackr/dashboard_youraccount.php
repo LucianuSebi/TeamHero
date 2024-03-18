@@ -25,86 +25,7 @@ $row = mysqli_fetch_array($sql_result);
 
 
 <body>
-    <div class="leftBar">
-        <div class="logo">
-
-        </div>
-
-        <div class="category">
-
-            <div class="categoryHeader">
-                <p>PROJECTS</p>
-                <i class="fa-solid fa-angle-up"></i>
-            </div>
-
-            <ul>
-                <li>
-                    <a href="#">Your Project</a>
-                </li>
-            </ul>
-
-        </div>
-        <div class="category">
-
-            <div class="categoryHeader">
-                <p>MANAGE</p>
-                <i class="fa-solid fa-angle-up"></i>
-            </div>
-
-            <ul>
-                <li>
-                    <a href="#">Feeds</a>
-                </li>
-                <li>
-                    <a href="#">Your Account</a>
-                </li>
-                <li>
-                    <a href="#">Monitoring</a>
-                </li>
-                <li>
-                    <a href="#">Chats</a>
-                </li>
-            </ul>
-
-        </div>
-        <div class="category">
-
-            <div class="categoryHeader">
-                <p>ADMINISTRATION</p>
-                <i class="fa-solid fa-angle-up"></i>
-            </div>
-
-            <ul>
-                <li>
-                    <a href="#">Members</a>
-                </li>
-                <li>
-                    <a href="#">Projects</a>
-                </li>
-                <li>
-                    <a href="#">Organization</a>
-                </li>
-            </ul>
-
-        </div>
-
-        <div class="category" style="padding-top:20px;border-bottom:0px;">
-
-            <ul>
-                <li>
-                    <a href="">Support</a>
-                </li>
-                <li>
-                    <a href="">Settings</a>
-                </li>
-                <li>
-                    <a href="">What's New</a>
-                </li>
-            </ul>
-
-        </div>
-
-    </div>
+    <?php include('includes/menu.php') ?>
 
     <div class="pageContent">
         <h1>My Profile</h1>
@@ -192,27 +113,37 @@ $row = mysqli_fetch_array($sql_result);
                     <h1>Active skills</h1>
                     <?php $skills = unserialize($row['Skills']);
                     foreach ($skills as $skill) {
-                        $sql="SELECT * FROM skills WHERE ID = '$skill'";
-                        $sql_result=mysqli_query($conn,$sql);
-                        $rowSkill= mysqli_fetch_array($sql_result); ?>
+                        $sql = "SELECT * FROM skills WHERE ID = '$skill'";
+                        $sql_result = mysqli_query($conn, $sql);
+                        $rowSkill = mysqli_fetch_array($sql_result); ?>
                         <div class="skill">
                             <div class="skill-section">
                                 <p>
-                                    Skill Name: <?php echo $rowSkill['Name']; ?> 
+                                    Skill Name:
+                                    <?php echo $rowSkill['Name']; ?>
                                 </p>
                             </div>
                             <div class="skill-section">
                                 <p>
-                                    Endorsed by <?php echo mysqli_num_rows(mysqli_query($conn,"SELECT * FROM endorsements WHERE Skill='$skill' AND Recipient = '$id'")); ?> people
+                                    Endorsed by
+                                    <?php echo mysqli_num_rows(mysqli_query($conn, "SELECT * FROM endorsements WHERE Skill='$skill' AND Recipient = '$id'")); ?>
+                                    people
                                 </p>
                             </div>
                             <div class="skill-section">
                                 <p>
-                                    Verified: <?php if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM verified_skills WHERE Skill='$skill' AND Recipient = '$id'"))) echo "yes"; else echo"no";?>
+                                    Verified:
+                                    <?php if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM verified_skills WHERE Skill='$skill' AND Recipient = '$id'")))
+                                        echo "yes";
+                                    else
+                                        echo "no"; ?>
                                 </p>
                             </div>
                             <div class="skill-section">
-                                <form id="<?php echo $skill; ?>" action="php_modules/change_account_settings.php" method="post" style="width: 0px;height: 0px;"><input type="hidden" name="action" value="removeSkill"><input type="hidden" name="skill" value="<?php echo $skill; ?>"></form>
+                                <form id="<?php echo $skill; ?>" action="php_modules/change_account_settings.php"
+                                    method="post" style="width: 0px;height: 0px;"><input type="hidden" name="action"
+                                        value="removeSkill"><input type="hidden" name="skill" value="<?php echo $skill; ?>">
+                                </form>
                                 <button type="submit" form="<?php echo $skill; ?>">Delete Skill</button>
                             </div>
                         </div>
@@ -225,16 +156,18 @@ $row = mysqli_fetch_array($sql_result);
                         <input type="hidden" name="action" value="addSkill">
                         <select id="multi_option" multiple name="skills" placeholder="Add Skills"
                             data-silent-initial-value-set="false">
-                            <?php 
-                            $orgId= $row['Org'];
-                            $sql="SELECT * FROM skills WHERE Org = '$orgId'";
-                            $sql_result=mysqli_query($conn,$sql);
-                            while ($rowOrgSkills = mysqli_fetch_assoc($sql_result)){ ?>
-                                <option value="<?php echo $rowOrgSkills['ID']; ?>"><?php echo $rowOrgSkills['Name']; ?></option>
+                            <?php
+                            $orgId = $row['Org'];
+                            $sql = "SELECT * FROM skills WHERE Org = '$orgId'";
+                            $sql_result = mysqli_query($conn, $sql);
+                            while ($rowOrgSkills = mysqli_fetch_assoc($sql_result)) { ?>
+                                <option value="<?php echo $rowOrgSkills['ID']; ?>">
+                                    <?php echo $rowOrgSkills['Name']; ?>
+                                </option>
                             <?php } ?>
                         </select>
                     </form>
-                    
+
                 </div>
             </div>
             <button type="submit" form="skill-information">Save Changes</button>
@@ -243,23 +176,6 @@ $row = mysqli_fetch_array($sql_result);
 
 </body>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const buttons = document.querySelectorAll('.categoryHeader');
-
-        buttons.forEach(function (button) {
-            button.addEventListener('click', function () {
-                const list = this.nextElementSibling;
-                if (list.style.height === '') {
-                    list.style.height = '0px';
-                }
-                else {
-                    list.style.height = '';
-                }
-            });
-        });
-    });
-</script>
 <script type="text/javascript" src="js/virtual-select.min.js"></script>
 <script type="text/javascript">
     VirtualSelect.init({

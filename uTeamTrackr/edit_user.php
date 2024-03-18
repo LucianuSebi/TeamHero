@@ -25,86 +25,7 @@ $row = mysqli_fetch_array($sql_result);
 
 
 <body>
-    <div class="leftBar">
-        <div class="logo">
-
-        </div>
-
-        <div class="category">
-
-            <div class="categoryHeader">
-                <p>PROJECTS</p>
-                <i class="fa-solid fa-angle-up"></i>
-            </div>
-
-            <ul>
-                <li>
-                    <a href="#">Your Project</a>
-                </li>
-            </ul>
-
-        </div>
-        <div class="category">
-
-            <div class="categoryHeader">
-                <p>MANAGE</p>
-                <i class="fa-solid fa-angle-up"></i>
-            </div>
-
-            <ul>
-                <li>
-                    <a href="#">Feeds</a>
-                </li>
-                <li>
-                    <a href="#">Your Account</a>
-                </li>
-                <li>
-                    <a href="#">Monitoring</a>
-                </li>
-                <li>
-                    <a href="#">Chats</a>
-                </li>
-            </ul>
-
-        </div>
-        <div class="category">
-
-            <div class="categoryHeader">
-                <p>ADMINISTRATION</p>
-                <i class="fa-solid fa-angle-up"></i>
-            </div>
-
-            <ul>
-                <li>
-                    <a href="#">Members</a>
-                </li>
-                <li>
-                    <a href="#">Projects</a>
-                </li>
-                <li>
-                    <a href="#">Organization</a>
-                </li>
-            </ul>
-
-        </div>
-
-        <div class="category" style="padding-top:20px;border-bottom:0px;">
-
-            <ul>
-                <li>
-                    <a href="">Support</a>
-                </li>
-                <li>
-                    <a href="">Settings</a>
-                </li>
-                <li>
-                    <a href="">What's New</a>
-                </li>
-            </ul>
-
-        </div>
-
-    </div>
+    <?php include('includes/menu.php') ?>
 
     <div class="pageContent">
         <h1>My Profile</h1>
@@ -221,13 +142,13 @@ $row = mysqli_fetch_array($sql_result);
                                     <input type="hidden" name="skill" value="<?php echo $skill; ?>">
                                     <input type="hidden" name="userID" value="<?php echo $id; ?>">
                                 </form>
-                                <form id="<?php echo $skill."verify"; ?>" action="php_modules/change_account_settings.php"
+                                <form id="<?php echo $skill . "verify"; ?>" action="php_modules/change_account_settings.php"
                                     method="post" style="width: 0px;height: 0px;">
                                     <input type="hidden" name="action" value="verifySkill">
                                     <input type="hidden" name="skill" value="<?php echo $skill; ?>">
                                     <input type="hidden" name="userID" value="<?php echo $id; ?>">
                                 </form>
-                                <button type="submit" form="<?php echo $skill."verify"; ?>">Verify Skill</button>
+                                <button type="submit" form="<?php echo $skill . "verify"; ?>">Verify Skill</button>
                                 <button type="submit" form="<?php echo $skill; ?>">Delete Skill</button>
                             </div>
                         </div>
@@ -260,23 +181,6 @@ $row = mysqli_fetch_array($sql_result);
 
 </body>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const buttons = document.querySelectorAll('.categoryHeader');
-
-        buttons.forEach(function (button) {
-            button.addEventListener('click', function () {
-                const list = this.nextElementSibling;
-                if (list.style.height === '') {
-                    list.style.height = '0px';
-                }
-                else {
-                    list.style.height = '';
-                }
-            });
-        });
-    });
-</script>
 <script type="text/javascript" src="js/virtual-select.min.js"></script>
 <script type="text/javascript">
     VirtualSelect.init({
