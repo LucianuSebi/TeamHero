@@ -5,7 +5,7 @@ session_start();
 
 if (isset($_POST['action'])) {
     $action = mysqli_real_escape_string($conn, $_POST['action']);
-    $id = 12;//$_SESSION['user']['ID'];
+    $id = $_SESSION['user']['id'];
 
     if ($action == "removeSkill") {
 

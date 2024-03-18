@@ -2,7 +2,6 @@
 error_reporting(E_ERROR | E_PARSE);
 include "db_conn.php";
 $id = $_SESSION['user']['id'];
-//CHANGE "25" TO $id TO DISABLE DEBUG
 $sql = "SELECT * FROM users WHERE ID = '25'";
 $sql_result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($sql_result);

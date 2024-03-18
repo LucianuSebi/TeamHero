@@ -19,12 +19,12 @@ $sql_result = mysqli_query($conn, $sql);
 
 <head>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href ="css/dashboard_members.css">
+    <link rel="stylesheet" href="css/dashboard_members.css">
     <script src="https://kit.fontawesome.com/f3d0c2ca4c.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Start-up Page</title>
-    
+
 
 </head>
 
@@ -118,11 +118,21 @@ $sql_result = mysqli_query($conn, $sql);
                 <button type="submit" id="searchBtn"><i class="fa-solid fa-magnifying-glass fa-2xl"></i></button>
             </form>
         </div>
+        <div class="section">
+            <h1>Add a Member to your team</h1>
+            <form id="addMember" action="php_modules/addMember.php" method="post">
+                <div class="input-group">
+                    <label for="uEmail">Member's Email</label>
+                    <input type="text" name="uEmail" id="uEmail" placeholder="Email">
+                </div>
+            </form>
+            <button type="submit" form="addMember">Add Member</button>
+        </div>
         <div class="categorii">
             <?php while ($row = mysqli_fetch_assoc($sql_result)) {
                 if (!(empty($_GET['search']))) {
                     ?><a class="categorie" href="edit_user.php?user=<?php echo $row['ID']; ?>"><img id="poza-categorie"
-                            src="images/users/<?php echo $row['ID']; ?>.png" />
+                            src="images/users/<?php echo $row['Img']; ?>.png" />
                         <p class="titlu-categorie">
                             <?php echo $row['FName'];
                             echo " " . $row['LName']; ?>
@@ -137,7 +147,7 @@ $sql_result = mysqli_query($conn, $sql);
                     <?php
                 } else {
                     ?><a class="categorie" href="edit_user.php?user=<?php echo $row['ID']; ?>"><img id="poza-categorie"
-                            src="images/users/<?php echo $row['ID']; ?>.png" />
+                            src="images/users/<?php echo $row['Img']; ?>.png" />
                         <p class="titlu-categorie">
                             <?php echo $row['FName'];
                             echo " " . $row['LName']; ?>

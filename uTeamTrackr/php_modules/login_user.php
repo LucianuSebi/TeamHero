@@ -32,16 +32,22 @@ if (isset($_POST['uEmail']) && isset($_POST['uPass'])) {
         //Daca functia returneaza doar un rand continuam
         if (password_verify($uPass, $row['Pass'])) {
 
-            //Variabila row stocheaza sql_result drept un tablou 
-            $row = mysqli_fetch_array($sql_result);
-
             //Variabila verificat indica faptul ca utilizatorul are contul verificat
-            if ($row['Verified'] == '1') {
+            if ($row['Verified'] == 1) {
 
                 //Utlizatorul este autentificat
                 //Stocarea datelor intr-un tablou de sesiune numit user
+                $orgID = $row['Org'];
+                $sql = "SELECT * FROM organizations WHERE ID = '$orgID'";
+                $sql_result = mysqli_query($conn, $sql);
+                $crow = mysqli_fetch_array($sql_result);
+
                 $_SESSION['auth'] = TRUE;
-                $_SESSION['user'] = [
+                $_SESSION['org'] = [
+                    'id' => $crow['ID'],
+                    'Name'=> $crow['Name'],
+                ];
+                $_SESSION["user"] = [
                     'id' => $row['ID'],
                     'fName' => $row['FName'],
                     'lName' => $row['LName'],

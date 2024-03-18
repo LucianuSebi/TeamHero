@@ -54,10 +54,10 @@ if (isset($_POST['fName']) && isset($_POST['lName']) && isset($_POST['uPhone']) 
     $uEmail = mysqli_real_escape_string($conn, $_POST['uEmail']);
     $uPass = mysqli_real_escape_string($conn, $_POST['uPass']);
     $uRePass = mysqli_real_escape_string($conn, $_POST['uRePass']);
-    $token = md5(rand());
+    $token = mysqli_real_escape_string($conn, $_POST['token']);
 
     //If a field stays empty, the user is sent back to the login page
-    if (empty($fName) || empty($lName) || empty($uEmail) || empty($uEmail) || empty($uRePass)) {
+    if (empty($fName) || empty($lName) || empty($uEmail) || empty($uEmail) || empty($uRePass) || empty($token)) {
         header("location: ../index.php");
         exit();
     }
@@ -68,7 +68,7 @@ if (isset($_POST['fName']) && isset($_POST['lName']) && isset($_POST['uPhone']) 
         exit();
     }
     //The mail shouldn't be associed to another account
-    else if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users WHERE Email = '$uEmail'"))) {
+    else if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users WHERE Email = '$uEmail' AND Token = '$token' AND Verified = '0'"))) {
 
         header("location: ../index.php?error=Email is already used");
         exit();
@@ -76,15 +76,16 @@ if (isset($_POST['fName']) && isset($_POST['lName']) && isset($_POST['uPhone']) 
     //Introducing the data into the data base
     else {
 
-        $sql = "INSERT INTO users (ID, FName, LName, Email, Phone, Pass, token) VALUES (NULL,'$fName','$lName','$uEmail','$uPhone','$uPass', '$token')";
+        $sql = "UPDATE users SET FName = '$fName', LName = '$lName', Phone = '$uPhone', Pass = '$uPass' WHERE Email = '$uEmail' AND Token = '$token'";
         $sql_result = mysqli_query($conn, $sql);
 
         //Sending the check-account email
         if ($sql_result) {
             $site_url=$_ENV['SITE_URL'];
             $verification_link="http://".$site_url."/teamhero/uteamtrackr/php_modules/verify-email.php?token=".$token;
-            sendmail_verify("$fName", "$lName", "$uEmail", "$verification_link");
             header("location: ../index.php");
+            sendmail_verify("$fName", "$lName", "$uEmail", "$verification_link");
+            exit();
         }
 
         //In case of an error, the user is sent back to the login page

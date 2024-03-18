@@ -5,7 +5,7 @@ session_start();
 
 if (isset($_POST['action'])) {
     $action = mysqli_real_escape_string($conn, $_POST['action']);
-    $id = 25;//$_SESSION['user']['ID'];
+    $id = $_SESSION['user']['id'];
 
     if ($action == "PersonalInformation") {
         if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['phone']) && isset($_POST['bio'])) {
@@ -84,8 +84,9 @@ if (isset($_POST['action'])) {
             $fileNameNew = $uniqueID . ".png";
             $fileDestination = '../images/users/' . $fileNameNew;
             move_uploaded_file($fileTmpName, $fileDestination);
-            $sql = "UPDATE users SET Img= '$uniqueID' WHERE id ='$id'";
+            $sql = "UPDATE users SET Img= '$uniqueID' WHERE ID ='$id'";
             $sql_result = mysqli_query($conn, $sql);
+            
             header("location: ../dashboard_youraccount.php");
             exit();
         } else {
