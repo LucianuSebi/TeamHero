@@ -5,7 +5,12 @@ session_start();
 
 if (isset($_POST['action'])) {
     $action = mysqli_real_escape_string($conn, $_POST['action']);
-    $id = $_SESSION['user']['id'];
+    if(isset($_POST['userID'])){
+        $id = mysqli_real_escape_string($conn, $_POST['userID']);
+    }else{
+        $id = $_SESSION['user']['id'];
+    }
+   
 
     if ($action == "PersonalInformation") {
         if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['phone']) && isset($_POST['bio'])) {
@@ -148,6 +153,14 @@ if (isset($_POST['action'])) {
             header("location: ../dashboard_youraccount.php");
             exit();
         }
+    } else if($action=="verifySkill"){
+
+        $skill=mysqli_real_escape_string($conn, $_POST['skill']);
+        $sql = "INSERT INTO verified_skills (Skill, Recipient) VALUES ('$skill','$id')";
+        $sql_result = mysqli_query($conn, $sql);
+
+        header("location: ../dashboard_youraccount.php");
+        exit();
     }
 }
 header("location: ../dashboard_youraccount.php");

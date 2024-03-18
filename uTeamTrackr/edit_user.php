@@ -1,7 +1,7 @@
 <?php session_start();
 error_reporting(E_ERROR | E_PARSE);
 include "db_conn.php";
-$id = $_SESSION['user']['id'];
+$id = mysqli_real_escape_string($conn, $_GET['user']);
 $sql = "SELECT * FROM users WHERE ID = '$id'";
 $sql_result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($sql_result);
@@ -119,6 +119,7 @@ $row = mysqli_fetch_array($sql_result);
                     <?php } ?>
                     <input type="file" name="photo" required>
                     <input type="hidden" name="action" value="Photo">
+                    <input type="hidden" name="userID" value="<?php echo $id; ?>">
                 </div>
                 <div class="general-info">
                     <p>
@@ -134,6 +135,7 @@ $row = mysqli_fetch_array($sql_result);
             <h1>Personal information</h1>
             <form id="personal-information" style="height: 300px;" action="php_modules/change_account_settings.php"
                 method="post">
+                <input type="hidden" name="userID" value="<?php echo $id; ?>">
                 <input type="hidden" name="action" value="PersonalInformation">
                 <div class="input-group">
                     <label for="fname">First Name</label>
@@ -163,6 +165,7 @@ $row = mysqli_fetch_array($sql_result);
             <h1>Adress</h1>
             <form id="adress-information" style="height: 200px;" action="php_modules/change_account_settings.php"
                 method="post">
+                <input type="hidden" name="userID" value="<?php echo $id; ?>">
                 <input type="hidden" name="action" value="Adress">
                 <div class="input-group">
                     <label for="country">Country</label>
@@ -192,27 +195,39 @@ $row = mysqli_fetch_array($sql_result);
                     <h1>Active skills</h1>
                     <?php $skills = unserialize($row['Skills']);
                     foreach ($skills as $skill) {
-                        $sql="SELECT * FROM skills WHERE ID = '$skill'";
-                        $sql_result=mysqli_query($conn,$sql);
-                        $rowSkill= mysqli_fetch_array($sql_result); ?>
+                        $sql = "SELECT * FROM skills WHERE ID = '$skill'";
+                        $sql_result = mysqli_query($conn, $sql);
+                        $rowSkill = mysqli_fetch_array($sql_result); ?>
                         <div class="skill">
                             <div class="skill-section">
                                 <p>
-                                    Skill Name: <?php echo $rowSkill['Name']; ?> 
+                                    Skill Name:
+                                    <?php echo $rowSkill['Name']; ?>
                                 </p>
                             </div>
                             <div class="skill-section">
                                 <p>
-                                    Endorsed by <?php echo mysqli_num_rows(mysqli_query($conn,"SELECT * FROM endorsements WHERE Skill='$skill' AND Recipient = '$id'")); ?> people
+                                    Verified:
+                                    <?php if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM verified_skills WHERE Skill='$skill' AND Recipient = '$id'")) == 1)
+                                        echo "yes";
+                                    else
+                                        echo "no"; ?>
                                 </p>
                             </div>
                             <div class="skill-section">
-                                <p>
-                                    Verified: <?php if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM verified_skills WHERE Skill='$skill' AND Recipient = '$id'"))) echo "yes"; else echo"no";?>
-                                </p>
-                            </div>
-                            <div class="skill-section">
-                                <form id="<?php echo $skill; ?>" action="php_modules/change_account_settings.php" method="post" style="width: 0px;height: 0px;"><input type="hidden" name="action" value="removeSkill"><input type="hidden" name="skill" value="<?php echo $skill; ?>"></form>
+                                <form id="<?php echo $skill; ?>" action="php_modules/change_account_settings.php"
+                                    method="post" style="width: 0px;height: 0px;">
+                                    <input type="hidden" name="action" value="removeSkill">
+                                    <input type="hidden" name="skill" value="<?php echo $skill; ?>">
+                                    <input type="hidden" name="userID" value="<?php echo $id; ?>">
+                                </form>
+                                <form id="<?php echo $skill."verify"; ?>" action="php_modules/change_account_settings.php"
+                                    method="post" style="width: 0px;height: 0px;">
+                                    <input type="hidden" name="action" value="verifySkill">
+                                    <input type="hidden" name="skill" value="<?php echo $skill; ?>">
+                                    <input type="hidden" name="userID" value="<?php echo $id; ?>">
+                                </form>
+                                <button type="submit" form="<?php echo $skill."verify"; ?>">Verify Skill</button>
                                 <button type="submit" form="<?php echo $skill; ?>">Delete Skill</button>
                             </div>
                         </div>
@@ -225,16 +240,18 @@ $row = mysqli_fetch_array($sql_result);
                         <input type="hidden" name="action" value="addSkill">
                         <select id="multi_option" multiple name="skills" placeholder="Add Skills"
                             data-silent-initial-value-set="false">
-                            <?php 
-                            $orgId= $row['Org'];
-                            $sql="SELECT * FROM skills WHERE Org = '$orgId'";
-                            $sql_result=mysqli_query($conn,$sql);
-                            while ($rowOrgSkills = mysqli_fetch_assoc($sql_result)){ ?>
-                                <option value="<?php echo $rowOrgSkills['ID']; ?>"><?php echo $rowOrgSkills['Name']; ?></option>
+                            <?php
+                            $orgId = $row['Org'];
+                            $sql = "SELECT * FROM skills WHERE Org = '$orgId'";
+                            $sql_result = mysqli_query($conn, $sql);
+                            while ($rowOrgSkills = mysqli_fetch_assoc($sql_result)) { ?>
+                                <option value="<?php echo $rowOrgSkills['ID']; ?>">
+                                    <?php echo $rowOrgSkills['Name']; ?>
+                                </option>
                             <?php } ?>
                         </select>
                     </form>
-                    
+
                 </div>
             </div>
             <button type="submit" form="skill-information">Save Changes</button>
