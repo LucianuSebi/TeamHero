@@ -25,11 +25,12 @@ if (isset($_POST['uEmail']) && isset($_POST['uPass'])) {
         //Selectam din tabelul users din coloanele Email si parola si verificam unde valorile corespund cu cele introduse
         //Sql_result va contine randurile din tabel care satisfac conditiile interogarii
 
-        $sql = "SELECT * FROM users WHERE Email='$uEmail' AND Pass='$uPass'";
+        $sql = "SELECT * FROM users WHERE Email='$uEmail'";
         $sql_result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($sql_result);
 
         //Daca functia returneaza doar un rand continuam
-        if (mysqli_num_rows($sql_result) === 1) {
+        if (password_verify($uPass, $row['Pass'])) {
 
             //Variabila row stocheaza sql_result drept un tablou 
             $row = mysqli_fetch_array($sql_result);
