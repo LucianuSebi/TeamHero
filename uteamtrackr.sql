@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2024 at 11:29 AM
+-- Generation Time: Mar 19, 2024 at 11:53 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -52,15 +52,6 @@ CREATE TABLE `endorsements` (
 -- Dumping data for table `endorsements`
 --
 
-INSERT INTO `endorsements` (`ID`, `Skill`, `Sender`, `Recipient`) VALUES
-(1, 1, 25, 25),
-(2, 1, 25, 25),
-(3, 1, 25, 25),
-(4, 1, 25, 25),
-(5, 1, 25, 25),
-(6, 1, 25, 25),
-(7, 1, 25, 25);
-
 -- --------------------------------------------------------
 
 --
@@ -82,9 +73,6 @@ CREATE TABLE `organizations` (
 -- Dumping data for table `organizations`
 --
 
-INSERT INTO `organizations` (`ID`, `Name`, `Phone`, `Email`, `Adress`, `Admin`, `Token`, `Verified`) VALUES
-(12, 'Sebastian-Lucian Amariei', '+40771798737', 'amariei_sebastianl@yahoo.com', 'Str. Grigore Antipa nr.9,', 0, '2ae628d7c42045d37ec7de9b7315e156', 1),
-(14, 'Sebastian-Lucian Amarieid', '+407717987373', 'da.amariei_sebastianl@yahoo.com', 'adasd@dad', 27, '15c83914798b957cb63876c9b6140f77', 0);
 
 -- --------------------------------------------------------
 
@@ -104,9 +92,6 @@ CREATE TABLE `projects` (
 -- Dumping data for table `projects`
 --
 
-INSERT INTO `projects` (`ID`, `Name`, `Dept`, `Org`, `Users`) VALUES
-(1, 'Gasirea Timpului', 1, 12, ''),
-(2, 'Gasirea Timpului', 1, 12, '');
 
 -- --------------------------------------------------------
 
@@ -124,14 +109,6 @@ CREATE TABLE `skills` (
 -- Dumping data for table `skills`
 --
 
-INSERT INTO `skills` (`ID`, `Name`, `Org`) VALUES
-(1, 'PHP', 12),
-(4, 'C++', 25),
-(5, 'HTML', 25),
-(6, 'JAVA', 25),
-(7, 'JAVA', 12),
-(8, 'C++', 12),
-(9, 'HTML', 12);
 
 -- --------------------------------------------------------
 
@@ -145,30 +122,25 @@ CREATE TABLE `users` (
   `LName` varchar(255) NOT NULL,
   `Email` varchar(255) NOT NULL,
   `Phone` varchar(255) NOT NULL,
-  `Country` varchar(255) NOT NULL,
-  `County` varchar(255) NOT NULL,
-  `City` varchar(255) NOT NULL,
-  `PostalCode` varchar(255) NOT NULL,
+  `Country` varchar(255) DEFAULT '',
+  `County` varchar(255) DEFAULT '',
+  `City` varchar(255) NOT NULL DEFAULT '',
+  `PostalCode` varchar(255) NOT NULL DEFAULT '',
   `Pass` varchar(255) NOT NULL,
-  `Rank` varchar(255) NOT NULL,
+  `Rank` varchar(255) NOT NULL DEFAULT '',
   `Bio` text NOT NULL,
-  `Img` varchar(255) NOT NULL,
+  `Img` varchar(255) NOT NULL DEFAULT '',
   `Skills` varchar(255) NOT NULL,
-  `Org` int(255) NOT NULL,
-  `Dept` int(255) NOT NULL,
-  `Projects` varchar(255) NOT NULL,
-  `Token` varchar(255) NOT NULL,
+  `Org` int(255) NOT NULL DEFAULT 0,
+  `Dept` int(255) NOT NULL DEFAULT 0,
+  `Projects` varchar(255) NOT NULL DEFAULT '',
+  `Token` varchar(255) NOT NULL DEFAULT '',
   `Verified` int(255) NOT NULL DEFAULT 0 COMMENT '0=Unverified'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
-
-INSERT INTO `users` (`ID`, `FName`, `LName`, `Email`, `Phone`, `Country`, `County`, `City`, `PostalCode`, `Pass`, `Rank`, `Bio`, `Img`, `Skills`, `Org`, `Dept`, `Projects`, `Token`, `Verified`) VALUES
-(25, 'Lucian', 'Amariei', 'amariei_sebastianl@yahoo.com', '+40771798737', 'Romania', 'Suceava', 'Suceava', '720111', '$2y$10$P0jAB.WkpHzkDwtvZzAN2eh/YUXCsoZ5cdguhlg6iAJadEbF1OOFa', 'admin', 'asdasdasd', '65f93adb662ff4.14309475', 'a:3:{i:0;s:1:\"1\";i:1;s:1:\"7\";i:2;s:1:\"8\";}', 12, 0, '', '2e331506c7393b05d9417f28b477f693', 1),
-(27, 'Sebastian-Lucian', 'Amariei', 'strugdar.sebastian@gmail.com', '+40771798737e', '', '', '', '', '$2y$10$P0jAB.WkpHzkDwtvZzAN2eh/YUXCsoZ5cdguhlg6iAJadEbF1OOFa', 'admin', '', '', '', 12, 0, '', '5d8ef81889c88dc05a69c0ef2285aed3', 0),
-(28, '', '', 'amariei_sebastianl@yahoo.com', '', '', '', '', '', '', '', '', '', '', 12, 0, '', '1ab6de29e9902d0646aafdf2fb8823a5', 0);
 
 -- --------------------------------------------------------
 
@@ -186,8 +158,7 @@ CREATE TABLE `verified_skills` (
 -- Dumping data for table `verified_skills`
 --
 
-INSERT INTO `verified_skills` (`ID`, `Skill`, `Recipient`) VALUES
-(2, 1, 25);
+
 
 --
 -- Indexes for dumped tables
