@@ -9,11 +9,11 @@ if ($_SESSION['auth'] != TRUE) {
 $search = mysqli_real_escape_string($conn, $_GET['search']);
 $org = $_SESSION['org']['id'];
 if (!(empty ($_GET['search']))) {
-    $sql = "SELECT * FROM users WHERE FName like '%$search%' OR LName like '%$search%' AND Org= '$org'";
+    $sql = "SELECT * FROM users WHERE FName like '%$search%' OR LName like '%$search%' AND Org= '$org' AND Verified ='1'";
     $sql_result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($sql_result);
 } else
-    $sql = "SELECT * FROM users WHERE org = '$org'";
+    $sql = "SELECT * FROM users WHERE org = '$org' AND Verified ='1'";
 $sql_result = mysqli_query($conn, $sql);
 ?>
 

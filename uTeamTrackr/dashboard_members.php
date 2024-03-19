@@ -12,7 +12,7 @@ if (!(empty ($_GET['search']))) {
     $sql_result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($sql_result);
 } else
-    $sql = "SELECT * FROM users WHERE org = '$org'";
+    $sql = "SELECT * FROM users WHERE org = '$org' AND Verified ='1'";
 $sql_result = mysqli_query($conn, $sql);
 ?>
 
