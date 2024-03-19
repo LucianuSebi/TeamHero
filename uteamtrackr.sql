@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2024 at 11:53 AM
+-- Generation Time: Mar 19, 2024 at 11:58 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -52,6 +52,7 @@ CREATE TABLE `endorsements` (
 -- Dumping data for table `endorsements`
 --
 
+
 -- --------------------------------------------------------
 
 --
@@ -93,6 +94,7 @@ CREATE TABLE `projects` (
 --
 
 
+
 -- --------------------------------------------------------
 
 --
@@ -108,6 +110,7 @@ CREATE TABLE `skills` (
 --
 -- Dumping data for table `skills`
 --
+
 
 
 -- --------------------------------------------------------
@@ -128,9 +131,9 @@ CREATE TABLE `users` (
   `PostalCode` varchar(255) NOT NULL DEFAULT '',
   `Pass` varchar(255) NOT NULL,
   `Rank` varchar(255) NOT NULL DEFAULT '',
-  `Bio` text NOT NULL,
+  `Bio` text NOT NULL DEFAULT '',
   `Img` varchar(255) NOT NULL DEFAULT '',
-  `Skills` varchar(255) NOT NULL,
+  `Skills` varchar(255) NOT NULL DEFAULT '',
   `Org` int(255) NOT NULL DEFAULT 0,
   `Dept` int(255) NOT NULL DEFAULT 0,
   `Projects` varchar(255) NOT NULL DEFAULT '',
@@ -141,6 +144,7 @@ CREATE TABLE `users` (
 --
 -- Dumping data for table `users`
 --
+
 
 -- --------------------------------------------------------
 
