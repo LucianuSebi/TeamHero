@@ -21,8 +21,8 @@ session_start();
             <h1 id="title">Sign Up</h1>
             <form id="loginForm" action="php_modules/register_org.php" method="post">
 
-            <h2 id = "orgTitle">Organization Details</h2>
-            <div class="input-group" id="inputGroupOrg" style="height:300px">
+                <h2 id="orgTitle">Organization Details</h2>
+                <div class="input-group" id="inputGroupOrg" style="height:300px">
 
                     <div class="input-field" id="orgName">
                         <i class="fa-solid fa-user"></i>
@@ -41,12 +41,12 @@ session_start();
 
                     <div class="input-field" id="orgAddress">
                         <i class="fa-solid fa-envelope"></i>
-                        <input type="email" name="cAddress" placeholder="Organization Address">
+                        <input type="text" name="cAddress" placeholder="Organization Address">
                     </div>
 
                 </div>
 
-                <h2 id = "userTitle">User Details</h2>
+                <h2 id="userTitle">User Details</h2>
                 <div class="input-group" id="inputGroup">
                     <div class="input-field" id="userFirstName">
                         <i class="fa-solid fa-user"></i>

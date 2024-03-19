@@ -70,7 +70,7 @@ function sendmail_verify_org($fName, $lName, $uEmail, $verification_link)
 }
 
 //Checking if the info was sent through POST method
-if (isset($_POST['cName']) && isset($_POST['cPhone']) && isset($_POST['cEmail']) && isset($_POST['cAddress']) && isset($_POST['fName']) && isset($_POST['lName']) && isset($_POST['uPhone']) && isset($_POST['uEmail']) && isset($_POST['uPass']) && isset($_POST['uRePass'])) {
+if (isset ($_POST['cName']) && isset ($_POST['cPhone']) && isset ($_POST['cEmail']) && isset ($_POST['cAddress']) && isset ($_POST['fName']) && isset ($_POST['lName']) && isset ($_POST['uPhone']) && isset ($_POST['uEmail']) && isset ($_POST['uPass']) && isset ($_POST['uRePass'])) {
 
     //Setting the variables from POST into variables
     $cName = mysqli_real_escape_string($conn, $_POST['cName']);
@@ -87,7 +87,7 @@ if (isset($_POST['cName']) && isset($_POST['cPhone']) && isset($_POST['cEmail'])
     $uRePass = mysqli_real_escape_string($conn, $_POST['uRePass']);
 
     //If a field remains empty, it is send to the login page
-    if (empty($cName) || empty($cPhone) || empty($cEmail) || empty($cAddress)) {
+    if (empty ($cName) || empty ($cPhone) || empty ($cEmail) || empty ($cAddress)) {
 
         header("location: ../index.php");
         exit();
@@ -109,7 +109,7 @@ if (isset($_POST['cName']) && isset($_POST['cPhone']) && isset($_POST['cEmail'])
 
             $site_url = $_ENV['SITE_URL'];
             $verification_link_org = "http://" . $site_url . "/teamhero/uteamtrackr/php_modules/verify-email.php?token=" . $token;
-            
+
 
             //In case of error, the info will be requested again
         } else {
@@ -122,7 +122,7 @@ if (isset($_POST['cName']) && isset($_POST['cPhone']) && isset($_POST['cEmail'])
 
         $token = md5(rand());
 
-        if (empty($fName) || empty($lName) || empty($uEmail) || empty($uPass) || empty($uRePass)) {
+        if (empty ($fName) || empty ($lName) || empty ($uEmail) || empty ($uPass) || empty ($uRePass)) {
 
             header("location: ../index.php");
             exit();
@@ -141,16 +141,16 @@ if (isset($_POST['cName']) && isset($_POST['cPhone']) && isset($_POST['cEmail'])
             $org_id = mysqli_fetch_assoc(mysqli_query($conn, "SELECT ID FROM organizations WHERE Email='$cEmail'"));
             $id = $org_id['ID'];
 
-            $uPass=password_hash($uPass, PASSWORD_DEFAULT);
+            $uPass = password_hash($uPass, PASSWORD_DEFAULT);
 
-            $sql = "INSERT INTO users (ID, FName, LName, Email, Phone, Pass ,Rank, Org, token) VALUES (NULL, '$fName', '$lName', '$uEmail', '$uPhone', '$uPass','admin','$id', '$token')";
+            $sql = "INSERT INTO users (ID, FName, LName, Email, Phone, Pass ,Rank, Org, token, Country, City, PostalCode, Bio, Img, Skills, Dept, Projects) VALUES (NULL, '$fName', '$lName', '$uEmail', '$uPhone', '$uPass','admin','$id', '$token', '', '', '', '', '', '', '', '')";
             $sql_result = mysqli_query($conn, $sql);
 
             if ($sql_result) {
 
                 $site_url = $_ENV['SITE_URL'];
                 $verification_link = "http://" . $site_url . "/teamhero/uteamtrackr/php_modules/verify-email.php?token=" . $token;
-                
+
 
             } else {
                 header("location: ../index.php");
