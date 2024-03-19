@@ -75,6 +75,7 @@ if (isset ($_POST['fName']) && isset ($_POST['lName']) && isset ($_POST['uPhone'
     }
     //Introducing the data into the data base
     else {
+        $uPass = password_hash($uPass, PASSWORD_DEFAULT);
 
         $sql = "UPDATE users SET FName = '$fName', LName = '$lName', Phone = '$uPhone', Pass = '$uPass' WHERE Email = '$uEmail' AND Token = '$token'";
         $sql_result = mysqli_query($conn, $sql);
