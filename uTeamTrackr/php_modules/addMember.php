@@ -76,7 +76,7 @@ if (isset ($_POST['uEmail'])) {
             $sql = "INSERT INTO users (Email, token, Org) VALUES ('$uEmail','$token','$orgID')";
             $sqlResult = mysqli_query($conn, $sql);
 
-            $verification_link = "http://" . $site_url . "/teamhero/uteamtrackr/register_user.php?token=" . $token;
+            $verification_link = "http://" . $site_url . "/TeamHero/uTeamTrackr/register_user.php?token=" . $token;
             header("location: ../dashboard_members.php");
             sendmail_verify($uEmail, $verification_link);
             exit();

@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "db_conn.php";
 $token = mysqli_real_escape_string($conn, $_GET['token']);
 ?>
 
