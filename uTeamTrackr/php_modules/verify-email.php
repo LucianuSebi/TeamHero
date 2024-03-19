@@ -3,7 +3,7 @@ session_start();
 
 include "db_conn.php";
 
-if (isset($_GET['token'])) {
+if (isset ($_GET['token'])) {
 
     $token = mysqli_real_escape_string($conn, $_GET['token']);
     $sql = "SELECT * FROM users WHERE Token= '$token'";
@@ -12,7 +12,7 @@ if (isset($_GET['token'])) {
     if (mysqli_num_rows($sql_result) == 1) {
 
         $row = mysqli_fetch_array($sql_result);
-        if ($row['verified'] == 0) {
+        if ($row['Verified'] == 0) {
 
             $sql = "UPDATE users SET verified='1' WHERE Token='$token'";
             $sql_result = mysqli_query($conn, $sql);
