@@ -26,6 +26,13 @@ $dataPoints2 = array(
     array("label" => "Verified Skills", "y" => mysqli_num_rows(mysqli_query($conn, "SELECT * FROM verified_skills"))),
 );
 
+$dataPoints3 = array(
+    array("label" => "Administrators", "y" => mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users WHERE Rank = 'admin'"))),
+    array("label" => "Departament Managers", "y" => mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users WHERE Rank = 'deptM'"))),
+    array("label" => "Project Managers", "y" => mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users WHERE Rank = 'projM'"))),
+    array("label" => "Users", "y" => mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users WHERE Rank = 'user'"))),
+);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,6 +76,22 @@ $dataPoints2 = array(
                 }]
             });
             chart2.render();
+            var chart3 = new CanvasJS.Chart("chartContainer3", {
+                animationEnabled: true,
+                theme: "light2", // "light1", "light2", "dark1", "dark2"
+                title: {
+                    text: "Endorsements and Verifications"
+                },
+                axisY: {
+                    title: "Number of Actions"
+                },
+                data: [{
+                    type: "column",
+                    dataPoints: <?php echo json_encode($dataPoints3, JSON_NUMERIC_CHECK); ?>
+                }]
+            });
+            chart3.render();
+
 
         }
     </script>
@@ -80,6 +103,7 @@ $dataPoints2 = array(
     <div class="pageContent">
         <div id="chartContainer1" class="chartContainer"></div>
         <div id="chartContainer2" class="chartContainer"></div>
+        <div id="chartContainer3" class="chartContainer"></div>
     </div>
     <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
 </body>
