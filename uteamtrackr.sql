@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2024 at 11:58 AM
+-- Generation Time: Mar 19, 2024 at 12:53 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,11 +48,6 @@ CREATE TABLE `endorsements` (
   `Recipient` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `endorsements`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -70,11 +65,6 @@ CREATE TABLE `organizations` (
   `Verified` int(255) NOT NULL DEFAULT 0 COMMENT '0 = Unverified'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `organizations`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -89,12 +79,6 @@ CREATE TABLE `projects` (
   `Users` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `projects`
---
-
-
-
 -- --------------------------------------------------------
 
 --
@@ -107,12 +91,6 @@ CREATE TABLE `skills` (
   `Org` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `skills`
---
-
-
-
 -- --------------------------------------------------------
 
 --
@@ -121,15 +99,15 @@ CREATE TABLE `skills` (
 
 CREATE TABLE `users` (
   `ID` int(255) NOT NULL,
-  `FName` varchar(255) NOT NULL,
-  `LName` varchar(255) NOT NULL,
+  `FName` varchar(255) NOT NULL DEFAULT '',
+  `LName` varchar(255) NOT NULL DEFAULT '',
   `Email` varchar(255) NOT NULL,
-  `Phone` varchar(255) NOT NULL,
+  `Phone` varchar(255) NOT NULL DEFAULT '',
   `Country` varchar(255) DEFAULT '',
   `County` varchar(255) DEFAULT '',
   `City` varchar(255) NOT NULL DEFAULT '',
   `PostalCode` varchar(255) NOT NULL DEFAULT '',
-  `Pass` varchar(255) NOT NULL,
+  `Pass` varchar(255) NOT NULL DEFAULT '',
   `Rank` varchar(255) NOT NULL DEFAULT '',
   `Bio` text NOT NULL DEFAULT '',
   `Img` varchar(255) NOT NULL DEFAULT '',
@@ -140,11 +118,6 @@ CREATE TABLE `users` (
   `Token` varchar(255) NOT NULL DEFAULT '',
   `Verified` int(255) NOT NULL DEFAULT 0 COMMENT '0=Unverified'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `users`
---
-
 
 -- --------------------------------------------------------
 
@@ -157,12 +130,6 @@ CREATE TABLE `verified_skills` (
   `Skill` int(255) NOT NULL,
   `Recipient` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `verified_skills`
---
-
-
 
 --
 -- Indexes for dumped tables
@@ -224,37 +191,37 @@ ALTER TABLE `departaments`
 -- AUTO_INCREMENT for table `endorsements`
 --
 ALTER TABLE `endorsements`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `organizations`
 --
 ALTER TABLE `organizations`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `skills`
 --
 ALTER TABLE `skills`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `verified_skills`
 --
 ALTER TABLE `verified_skills`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

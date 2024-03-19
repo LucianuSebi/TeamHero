@@ -1,8 +1,7 @@
 <?php session_start();
 error_reporting(E_ERROR | E_PARSE);
 include "db_conn.php";
-$id = 12;//$_SESSION['user']['org'];
-//CHANGE "12" TO $id TO DISABLE DEBUG
+$id = $_SESSION['org']['id'];
 $sql = "SELECT * FROM organizations WHERE ID = '$id'";
 $sql_result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($sql_result);
@@ -23,7 +22,7 @@ $row = mysqli_fetch_array($sql_result);
 
 
 <body>
-    <?php include('includes/menu.php') ?>
+    <?php include ('includes/menu.php') ?>
     <div class="pageContent">
         <h1>Controll Panel for Skills</h1>
         <div class="section">
