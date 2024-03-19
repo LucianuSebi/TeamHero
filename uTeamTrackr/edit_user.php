@@ -2,7 +2,7 @@
 error_reporting(E_ERROR | E_PARSE);
 include "db_conn.php";
 if ($_SESSION['auth'] != TRUE) {
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    header("location: index.php");
     exit();
 }
 $id = mysqli_real_escape_string($conn, $_GET['user']);

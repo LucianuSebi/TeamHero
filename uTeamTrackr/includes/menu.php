@@ -65,6 +65,9 @@
             <li>
                 <a href="index.php#contact">Support</a>
             </li>
+            <li>
+                <a href="php_modules/logout.php">Log Out</a>
+            </li>
         </ul>
 
     </div>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 if ($_SESSION['auth'] != TRUE) {
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    header("location: index.php");
     exit();
 }
 ?>

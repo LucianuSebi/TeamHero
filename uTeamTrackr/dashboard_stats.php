@@ -2,7 +2,7 @@
 session_start();
 include "db_conn.php";
 if ($_SESSION['auth'] != TRUE) {
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    header("location: index.php");
     exit();
 }
 $orgID = $_SESSION['org']['id'];

@@ -8,9 +8,9 @@ $dotenv = Dotenv\Dotenv::createImmutable("../");
 $dotenv->load();
 
 
-$sname= "localhost";
-$uname= $_ENV['DATABASE_USERNAME'];
-$password= $_ENV['DATABASE_PASSWORD'];
+$sname = "localhost";
+$uname = $_ENV['DATABASE_USERNAME'];
+$password = $_ENV['DATABASE_PASSWORD'];
 $db_name = $_ENV['DATABASE_NAME'];
 
 //The functionmysqli_connect takes as parameters the name of the server, the username, the password and the name of the data base
