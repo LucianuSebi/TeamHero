@@ -68,7 +68,7 @@ if (isset ($_POST['fName']) && isset ($_POST['lName']) && isset ($_POST['uPhone'
         exit();
     }
     //The mail shouldn't be associed to another account
-    else if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users WHERE Email = '$uEmail' AND Token = '$token' AND Verified = '0'"))) {
+    else if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users WHERE Email = '$uEmail' AND Token = '$token' AND Verified = '1'"))) {
 
         header("location: ../index.php?error=Email is already used");
         exit();
