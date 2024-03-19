@@ -41,9 +41,9 @@ function sendmail_verify($uEmail, $verification_link)
 
 }
 
-if (isset($_POST['uEmail'])) {
+if (isset ($_POST['uEmail'])) {
     $uEmail = mysqli_real_escape_string($conn, $_POST['uEmail']);
-    if (!empty($uEmail)) {
+    if (!empty ($uEmail)) {
 
         $numRows = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users WHERE Email = '$uEmail'"));
         if ($numRows) {
@@ -67,6 +67,20 @@ if (isset($_POST['uEmail'])) {
                 sendmail_verify($uEmail, $verification_link);
                 exit();
             }
+        } else {
+
+            $token = md5(rand());
+            $site_url = $_ENV['SITE_URL'];
+            $orgID = $_SESSION['org']['id'];
+
+            $sql = "INSERT INTO users (Email, token, Org) VALUES ('$uEmail','$token','$orgID')";
+            $sqlResult = mysqli_query($conn, $sql);
+
+            $verification_link = "http://" . $site_url . "/teamhero/uteamtrackr/register_user.php?token=" . $token;
+            header("location: ../dashboard_members.php");
+            sendmail_verify($uEmail, $verification_link);
+            exit();
+
         }
 
 

@@ -40,7 +40,7 @@ if (isset ($_GET['token'])) {
         if (mysqli_num_rows($sql_result) == 1) {
 
             $row = mysqli_fetch_array($sql_result);
-            if ($row['verified'] == 0) {
+            if ($row['Verified'] == 0) {
 
                 $sql = "UPDATE organizations SET verified='1' WHERE Token='$token'";
                 $sql_result = mysqli_query($conn, $sql);
@@ -57,7 +57,7 @@ if (isset ($_GET['token'])) {
 
             } else {
                 $_SESSION['status'] = "Email Already Verified. Please log in";
-                header("Location: ../index.php");
+                header("Location: ../signup.php");
                 exit();
             }
 
