@@ -35,7 +35,7 @@ function sendmail_verify($fName, $lName, $uEmail, $verification_link)
         <h2>You have Registered as an Employee with uTeamTrackr.com</h2>
         <h5>Verify your email adress to Login with by clicking the link provided below</h5>
         <br></br>
-        <a href="'.$verification_link.'"> Click me to verify! </a>
+        <a href="' . $verification_link . '"> Click me to verify! </a>
     ';
 
     $mail->send();
@@ -45,7 +45,7 @@ function sendmail_verify($fName, $lName, $uEmail, $verification_link)
 
 //Checking if the variables sent through POST are setted
 
-if (isset($_POST['fName']) && isset($_POST['lName']) && isset($_POST['uPhone']) && isset($_POST['uEmail']) && isset($_POST['uPass']) && isset($_POST['uRePass'])) {
+if (isset ($_POST['fName']) && isset ($_POST['lName']) && isset ($_POST['uPhone']) && isset ($_POST['uEmail']) && isset ($_POST['uPass']) && isset ($_POST['uRePass'])) {
     //Setting the variables from POST into variables
 
     $fName = mysqli_real_escape_string($conn, $_POST['fName']);
@@ -57,7 +57,7 @@ if (isset($_POST['fName']) && isset($_POST['lName']) && isset($_POST['uPhone']) 
     $token = mysqli_real_escape_string($conn, $_POST['token']);
 
     //If a field stays empty, the user is sent back to the login page
-    if (empty($fName) || empty($lName) || empty($uEmail) || empty($uEmail) || empty($uRePass) || empty($token)) {
+    if (empty ($fName) || empty ($lName) || empty ($uEmail) || empty ($uEmail) || empty ($uRePass) || empty ($token)) {
         header("location: ../index.php");
         exit();
     }
@@ -81,8 +81,8 @@ if (isset($_POST['fName']) && isset($_POST['lName']) && isset($_POST['uPhone']) 
 
         //Sending the check-account email
         if ($sql_result) {
-            $site_url=$_ENV['SITE_URL'];
-            $verification_link="http://".$site_url."/teamhero/uteamtrackr/php_modules/verify-email.php?token=".$token;
+            $site_url = $_ENV['SITE_URL'];
+            $verification_link = "http://" . $site_url . "/TeamHero/uTeamTrackr/php_modules/verify-email.php?token=" . $token;
             header("location: ../index.php");
             sendmail_verify("$fName", "$lName", "$uEmail", "$verification_link");
             exit();

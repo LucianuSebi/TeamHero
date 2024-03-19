@@ -108,7 +108,7 @@ if (isset ($_POST['cName']) && isset ($_POST['cPhone']) && isset ($_POST['cEmail
         if ($sql_result) {
 
             $site_url = $_ENV['SITE_URL'];
-            $verification_link_org = "http://" . $site_url . "/teamhero/uteamtrackr/php_modules/verify-email.php?token=" . $token;
+            $verification_link_org = "http://" . $site_url . "/TeamHero/uTeamTrackr/php_modules/verify-email.php?token=" . $token;
 
 
             //In case of error, the info will be requested again
@@ -149,7 +149,7 @@ if (isset ($_POST['cName']) && isset ($_POST['cPhone']) && isset ($_POST['cEmail
             if ($sql_result) {
 
                 $site_url = $_ENV['SITE_URL'];
-                $verification_link = "http://" . $site_url . "/teamhero/uteamtrackr/php_modules/verify-email.php?token=" . $token;
+                $verification_link = "http://" . $site_url . "/TeamHero/uTeamTrackr/php_modules/verify-email.php?token=" . $token;
 
 
             } else {
