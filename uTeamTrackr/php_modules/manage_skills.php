@@ -5,7 +5,7 @@ session_start();
 
 if (isset($_POST['action'])) {
     $action = mysqli_real_escape_string($conn, $_POST['action']);
-    $id = $_SESSION['user']['id'];
+    $id = $_SESSION['org']['id'];
 
     if ($action == "removeSkill") {
 
@@ -34,7 +34,7 @@ if (isset($_POST['action'])) {
     }else if($action == "addSkill") {
         $skill = mysqli_real_escape_string($conn, $_POST['skill']);
         
-        if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM skills WHERE Name = '$skill'"))==0){
+        if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM skills WHERE Name = '$skill' AND Org ='$id'"))==0){
             $sql = "INSERT INTO skills (Name, Org) VALUES ('$skill', '$id')";
             $sql_result = mysqli_query($conn, $sql);
 

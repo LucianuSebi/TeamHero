@@ -27,16 +27,10 @@
 
             <ul>
                 <li>
-                    <a href="# ">Feeds</a>
-                </li>
-                <li>
                     <a href="dashboard_youraccount.php">Your Account</a>
                 </li>
                 <li>
-                    <a href="# ">Monitoring</a>
-                </li>
-                <li>
-                    <a href="# ">Chats</a>
+                    <a href="dashboard_colleagues.php">Colleagues</a>
                 </li>
             </ul>
 
@@ -59,7 +53,7 @@
                     <a href="dashboard_projects.php">Projects</a>
                 </li>
                 <li>
-                    <a href="# ">Organization</a>
+                    <a href="dashboard_stats.php">Statistics</a>
                 </li>
             </ul>
 
@@ -69,7 +63,7 @@
 
             <ul>
                 <li>
-                    <a href="">Support</a>
+                    <a href="index.php#contact">Support</a>
                 </li>
             </ul>
 

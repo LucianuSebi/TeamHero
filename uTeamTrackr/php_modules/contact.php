@@ -69,7 +69,7 @@ $Phone = mysqli_real_escape_string($conn, $_POST['phone']);
 $City = mysqli_real_escape_string($conn, $_POST['city']);
 $Desc = mysqli_real_escape_string($conn, $_POST['description']);
 
-header("location: ../index.php");
+header("location: ../index.php#contact");
 sendmail_contact($Name, $Phone, $Email, $City, $Desc);
 
 exit();

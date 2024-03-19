@@ -38,20 +38,10 @@ $sql_result = mysqli_query($conn, $sql);
                 <button type="submit" id="searchBtn"><i class="fa-solid fa-magnifying-glass fa-2xl"></i></button>
             </form>
         </div>
-        <div class="section">
-            <h1>Add a Member to your team</h1>
-            <form id="addMember" action="php_modules/addMember.php" method="post">
-                <div class="input-group">
-                    <label for="uEmail">Member's Email</label>
-                    <input type="text" name="uEmail" id="uEmail" placeholder="Email">
-                </div>
-            </form>
-            <button type="submit" form="addMember">Add Member</button>
-        </div>
         <div class="categorii">
             <?php while ($row = mysqli_fetch_assoc($sql_result)) {
                 if (!(empty($_GET['search']))) {
-                    ?><a class="categorie" href="edit_user.php?user=<?php echo $row['ID']; ?>"><img id="poza-categorie"
+                    ?><a class="categorie" href="see_user.php?user=<?php echo $row['ID']; ?>"><img id="poza-categorie"
                             src="images/users/<?php echo $row['Img']; ?>.png" />
                         <p class="titlu-categorie">
                             <?php echo $row['FName'];
@@ -61,12 +51,12 @@ $sql_result = mysqli_query($conn, $sql);
                             <?php echo $row['Rank']; ?>
                         </p>
                         <p class="manage-categorie">
-                            MANAGE
+                            SEE
                         </p>
                     </a>
                     <?php
                 } else {
-                    ?><a class="categorie" href="edit_user.php?user=<?php echo $row['ID']; ?>"><img id="poza-categorie"
+                    ?><a class="categorie" href="see_user.php?user=<?php echo $row['ID']; ?>"><img id="poza-categorie"
                             src="images/users/<?php echo $row['Img']; ?>.png" />
                         <p class="titlu-categorie">
                             <?php echo $row['FName'];
@@ -76,7 +66,7 @@ $sql_result = mysqli_query($conn, $sql);
                             <?php echo $row['Rank']; ?>
                         </p>
                         <p class="manage-categorie">
-                            MANAGE
+                            SEE
                         </p>
                     </a>
                     <?php

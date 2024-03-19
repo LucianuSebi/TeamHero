@@ -3,17 +3,17 @@
 include "db_conn.php";
 session_start();
 
-if (isset($_POST['action'])) {
+if (isset ($_POST['action'])) {
     $action = mysqli_real_escape_string($conn, $_POST['action']);
-    if(isset($_POST['userID'])){
+    if (isset ($_POST['userID'])) {
         $id = mysqli_real_escape_string($conn, $_POST['userID']);
-    }else{
+    } else {
         $id = $_SESSION['user']['id'];
     }
-   
+
 
     if ($action == "PersonalInformation") {
-        if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['phone']) && isset($_POST['bio'])) {
+        if (isset ($_POST['fname']) && isset ($_POST['lname']) && isset ($_POST['email']) && isset ($_POST['phone']) && isset ($_POST['bio'])) {
             $fname = mysqli_real_escape_string($conn, $_POST['fname']);
             $lname = mysqli_real_escape_string($conn, $_POST['lname']);
             $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -40,11 +40,11 @@ if (isset($_POST['action'])) {
                 $sql = "UPDATE users SET Bio= '$bio' WHERE id ='$id'";
                 $sql_result = mysqli_query($conn, $sql);
             }
-            header("location: ../dashboard_youraccount.php");
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
             exit();
         }
     } else if ($action == "Adress") {
-        if (isset($_POST['country']) && isset($_POST['county']) && isset($_POST['city']) && isset($_POST['postalCode'])) {
+        if (isset ($_POST['country']) && isset ($_POST['county']) && isset ($_POST['city']) && isset ($_POST['postalCode'])) {
             $country = mysqli_real_escape_string($conn, $_POST['country']);
             $county = mysqli_real_escape_string($conn, $_POST['county']);
             $city = mysqli_real_escape_string($conn, $_POST['city']);
@@ -66,7 +66,7 @@ if (isset($_POST['action'])) {
                 $sql = "UPDATE users SET PostalCode= '$postalCode' WHERE id ='$id'";
                 $sql_result = mysqli_query($conn, $sql);
             }
-            header("location: ../dashboard_youraccount.php");
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
             exit();
 
 
@@ -91,21 +91,22 @@ if (isset($_POST['action'])) {
             move_uploaded_file($fileTmpName, $fileDestination);
             $sql = "UPDATE users SET Img= '$uniqueID' WHERE ID ='$id'";
             $sql_result = mysqli_query($conn, $sql);
-            
-            header("location: ../dashboard_youraccount.php");
+
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
             exit();
         } else {
-            //ERROR UPLOADING
-            header("location: ../dashboard_youraccount.php");
+
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
             exit();
         }
 
 
 
     } else if ($action == "addSkill") {
-        if (isset($_POST['skills'])) {
+        if (isset ($_POST['skills'])) {
 
-            $newSkills = mysqli_real_escape_string($conn, $_POST['skills']);;
+            $newSkills = mysqli_real_escape_string($conn, $_POST['skills']);
+            ;
             $newSkills = explode(',', $newSkills);
 
             $sql = "SELECT * FROM users WHERE ID = '$id'";
@@ -114,14 +115,14 @@ if (isset($_POST['action'])) {
 
             $oldSkills = unserialize($row['Skills']);
 
-            if (!empty($oldSkills)) {
+            if (!empty ($oldSkills)) {
                 $skills = array_merge(array_diff($oldSkills, $newSkills), $newSkills);
                 $skills = serialize($skills);
 
                 $sql = "UPDATE users SET Skills= '$skills' WHERE id ='$id'";
                 $sql_result = mysqli_query($conn, $sql);
 
-                header("location: ../dashboard_youraccount.php");
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
                 exit();
             } else {
                 $skills = serialize($newSkills);
@@ -129,39 +130,57 @@ if (isset($_POST['action'])) {
                 $sql = "UPDATE users SET Skills= '$skills' WHERE id ='$id'";
                 $sql_result = mysqli_query($conn, $sql);
 
-                header("location: ../dashboard_youraccount.php");
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
                 exit();
             }
         }
-    } else if($action == "removeSkill"){
-        if (isset($_POST['skill'])) {
+    } else if ($action == "removeSkill") {
+        if (isset ($_POST['skill'])) {
 
-            $skill=mysqli_real_escape_string($conn, $_POST['skill']);
+            $skill = mysqli_real_escape_string($conn, $_POST['skill']);
 
             $sql = "SELECT * FROM users WHERE ID = '$id'";
             $sql_result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_array($sql_result);
 
-            $skill= array($skill);
+            $skill = array($skill);
             $oldSkills = unserialize($row['Skills']);
-            $newSkills = array_diff($oldSkills,$skill);
+            $newSkills = array_diff($oldSkills, $skill);
             $skills = serialize($newSkills);
 
             $sql = "UPDATE users SET Skills= '$skills' WHERE id ='$id'";
             $sql_result = mysqli_query($conn, $sql);
 
-            header("location: ../dashboard_youraccount.php");
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
             exit();
         }
-    } else if($action=="verifySkill"){
+    } else if ($action == "verifySkill") {
 
-        $skill=mysqli_real_escape_string($conn, $_POST['skill']);
-        $sql = "INSERT INTO verified_skills (Skill, Recipient) VALUES ('$skill','$id')";
-        $sql_result = mysqli_query($conn, $sql);
+        $skill = mysqli_real_escape_string($conn, $_POST['skill']);
 
-        header("location: ../dashboard_youraccount.php");
+        if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM verified_skills WHERE Skill = '$skill' AND Recipient ='$id'")) < 1) {
+
+            $sql = "INSERT INTO verified_skills (Skill, Recipient) VALUES ('$skill','$id')";
+            $sql_result = mysqli_query($conn, $sql);
+
+        }
+
+
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit();
+    } else if ($action == "endorseSkill") {
+
+        $skill = mysqli_real_escape_string($conn, $_POST['skill']);
+        $aID = $_SESSION['user']['id'];
+        if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM endorsements WHERE Skill = '$skill' AND Recipient ='$id' AND Sender = '$aID'")) < 1) {
+
+            $sql = "INSERT INTO endorsements (Skill, Recipient,Sender) VALUES ('$skill','$id','$aID')";
+            $sql_result = mysqli_query($conn, $sql);
+        }
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit();
     }
 }
-header("location: ../dashboard_youraccount.php");
+header('Location: ' . $_SERVER['HTTP_REFERER']);
 exit();

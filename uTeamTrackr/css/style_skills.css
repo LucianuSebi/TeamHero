@@ -1,126 +1,112 @@
-.pageContent {
-    overflow: auto;
-    position: absolute;
-    left: 15%;
-    top: 0%;
-    width: 85%;
-    height: 100%;
-    background-color: #cfadfc;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .pageContent h1 {
-    padding: 50px;
+  padding: 50px;
 }
 
 .section {
-    border-radius: 20px;
-    width: 80%;
-    border: 2px solid gray;
-    padding: 30px 20px 30px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
+  border-radius: 20px;
+  width: 80%;
+  border: 2px solid gray;
+  padding: 30px 20px 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .section button {
-    border: 2px solid gray;
-    border-radius: 5px;
-    background-color: transparent;
-    padding: 10px;
-    margin-left: auto;
-    color: gray;
-    cursor: pointer;
-    transition: all 0.4s ease;
+  border: 2px solid gray;
+  border-radius: 5px;
+  background-color: transparent;
+  padding: 10px;
+  margin-left: auto;
+  color: gray;
+  cursor: pointer;
+  transition: all 0.4s ease;
 }
 .section button:hover {
-    background-color: grey;
-    color: black;
-    border-color: black;
+  background-color: grey;
+  color: black;
+  border-color: black;
 }
 .section h1 {
-    padding: 20px;
-    width: 90%;
-    text-align: left;
+  padding: 20px;
+  width: 90%;
+  text-align: left;
 }
 
 .section-container {
-    width: 90%;
-    display: flex;
-    flex-direction: column;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
 }
 
 .skills {
-    width: 100%;
-    padding: 0 0 30px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 100%;
+  padding: 0 0 30px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .skills h1 {
-    font-size: 25px;
-    margin: 0;
-    padding: 0;
+  font-size: 25px;
+  margin: 0;
+  padding: 0;
 }
 
-.skill{
-    border: 1px solid gray;
-    margin: 20px 0 10px 0;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    padding: 0 30px 0 30px;
-    align-items: center;
-    width: 90%;
-    justify-content: space-evenly;
-    height: 70px;
+.skill {
+  border: 1px solid gray;
+  margin: 20px 0 10px 0;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding: 0 30px 0 30px;
+  align-items: center;
+  width: 90%;
+  justify-content: space-evenly;
+  height: 70px;
 }
 
-.skill-section{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0 20px 0 0px;
+.skill-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 20px 0 0px;
 }
-.skill-section p{
-    margin: 0;
-    font-size: 23px;
-    padding-right: 20px;
-    border-right: 1px solid gray;
-}
-
-.skill-section button{
-    width: 140px;
-    border: 0;
-    text-decoration: underline;
-    height: 90%;
-    padding: 0 10px 0 10px;
-    font-size: 23px;
+.skill-section p {
+  margin: 0;
+  font-size: 23px;
+  padding-right: 20px;
+  border-right: 1px solid gray;
 }
 
-.add-skill{
-    padding: 10px;
-    width: 90%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    border-bottom: 2px solid gray;
-    align-items: center;
-    margin-bottom: 20px;
+.skill-section button {
+  width: 140px;
+  border: 0;
+  text-decoration: underline;
+  height: 90%;
+  padding: 0 10px 0 10px;
+  font-size: 23px;
 }
-.add-skill h2{
-    padding: 10px 20px 10px 0;
+
+.add-skill {
+  padding: 10px;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  border-bottom: 2px solid gray;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.add-skill h2 {
+  padding: 10px 20px 10px 0;
 }
 .add-skill input {
-    background-color: rgba(200, 200, 200, 0.9);
-    border: none;
-    border-radius: 5px;
-    height: 30px;
-    font-size: 18px;
+  background-color: rgba(200, 200, 200, 0.9);
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  font-size: 18px;
 }

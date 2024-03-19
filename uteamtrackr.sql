@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2024 at 10:30 PM
+-- Generation Time: Mar 18, 2024 at 02:56 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -70,7 +70,8 @@ CREATE TABLE `organizations` (
 --
 
 INSERT INTO `organizations` (`ID`, `Name`, `Phone`, `Email`, `Adress`, `Admin`, `Token`, `Verified`) VALUES
-(12, 'Sebastian-Lucian Amariei', '+40771798737', 'amariei_sebastianl@yahoo.com', 'Str. Grigore Antipa nr.9,', 0, '2ae628d7c42045d37ec7de9b7315e156', 1);
+(12, 'Sebastian-Lucian Amariei', '+40771798737', 'amariei_sebastianl@yahoo.com', 'Str. Grigore Antipa nr.9,', 0, '2ae628d7c42045d37ec7de9b7315e156', 1),
+(14, 'Sebastian-Lucian Amarieid', '+407717987373', 'da.amariei_sebastianl@yahoo.com', 'adasd@dad', 27, '15c83914798b957cb63876c9b6140f77', 0);
 
 -- --------------------------------------------------------
 
@@ -112,7 +113,8 @@ CREATE TABLE `skills` (
 
 INSERT INTO `skills` (`ID`, `Name`, `Org`) VALUES
 (1, 'PHP', 12),
-(3, 'JAVA', 12);
+(4, 'C++', 25),
+(5, 'HTML', 25);
 
 -- --------------------------------------------------------
 
@@ -147,7 +149,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`ID`, `FName`, `LName`, `Email`, `Phone`, `Country`, `County`, `City`, `PostalCode`, `Pass`, `Rank`, `Bio`, `Img`, `Skills`, `Org`, `Dept`, `Projects`, `Token`, `Verified`) VALUES
-(25, 'Sebastian-Lucian', 'Amariei', 'amariei_sebastianl@yahoo.com', '+40771798737', 'Romania', 'Suceava', 'Suceava', '720111', 'd', 'admin', 'asdasdasd', '', 'a:4:{i:0;s:1:\"3\";i:1;s:1:\"5\";i:2;s:1:\"6\";i:3;s:1:\"1\";}', 12, 0, '', '2e331506c7393b05d9417f28b477f693', 1);
+(25, 'dgagdagd', 'Amariei', 'amariei_sebastianl@yahoo.com', '+40771798737', 'Romania', 'Suceava', 'Suceava', '720111', '$2y$10$P0jAB.WkpHzkDwtvZzAN2eh/YUXCsoZ5cdguhlg6iAJadEbF1OOFa', 'admin', 'asdasdasd', '65f83cca5c3e45.64313939', 'a:1:{i:0;s:1:\"1\";}', 12, 0, '', '2e331506c7393b05d9417f28b477f693', 1),
+(27, 'Sebastian-Lucian', 'Amariei', 'strugdar.sebastian@gmail.com', '+40771798737e', '', '', '', '', '$2y$10$P0jAB.WkpHzkDwtvZzAN2eh/YUXCsoZ5cdguhlg6iAJadEbF1OOFa', 'admin', '', '', '', 12, 0, '', '5d8ef81889c88dc05a69c0ef2285aed3', 0),
+(28, '', '', 'amariei_sebastianl@yahoo.com', '', '', '', '', '', '', '', '', '', '', 12, 0, '', '1ab6de29e9902d0646aafdf2fb8823a5', 0);
 
 -- --------------------------------------------------------
 
@@ -160,6 +164,13 @@ CREATE TABLE `verified_skills` (
   `Skill` int(255) NOT NULL,
   `Recipient` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `verified_skills`
+--
+
+INSERT INTO `verified_skills` (`ID`, `Skill`, `Recipient`) VALUES
+(1, 1, 25);
 
 --
 -- Indexes for dumped tables
@@ -227,7 +238,7 @@ ALTER TABLE `endorsements`
 -- AUTO_INCREMENT for table `organizations`
 --
 ALTER TABLE `organizations`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `projects`
@@ -239,19 +250,19 @@ ALTER TABLE `projects`
 -- AUTO_INCREMENT for table `skills`
 --
 ALTER TABLE `skills`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `verified_skills`
 --
 ALTER TABLE `verified_skills`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

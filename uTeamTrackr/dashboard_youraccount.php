@@ -7,7 +7,6 @@ $sql_result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($sql_result);
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,10 +18,7 @@ $row = mysqli_fetch_array($sql_result);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Start-up Page</title>
-
-
 </head>
-
 
 <body>
     <?php include('includes/menu.php') ?>

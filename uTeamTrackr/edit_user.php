@@ -177,6 +177,9 @@ $row = mysqli_fetch_array($sql_result);
             </div>
             <button type="submit" form="skill-information">Save Changes</button>
         </div>
+        <div class="section">
+            <h1>Change Rank</h1>
+        </div>
     </div>
 
 </body>

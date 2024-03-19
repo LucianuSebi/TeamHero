@@ -7,7 +7,7 @@ include "db_conn.php";
 
 
 //Verificare daca au fost trimise emailul si parola in campurile uEmail, respectiv uPass prin metoda POST
-if (isset($_POST['uEmail']) && isset($_POST['uPass'])) {
+if (isset ($_POST['uEmail']) && isset ($_POST['uPass'])) {
 
     //Variabilele setate iau valorile din coloanele bazei de date
     $uEmail = mysqli_real_escape_string($conn, $_POST['uEmail']);
@@ -15,9 +15,9 @@ if (isset($_POST['uEmail']) && isset($_POST['uPass'])) {
 
 
     //In caz de sunt campurile sunt goale va aparea eroarea respectiva
-    if (empty($uEmail) || empty($uPass)) {
+    if (empty ($uEmail) || empty ($uPass)) {
 
-        header("location: ../index.php?error=Email is required");
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit();
 
     } else {
@@ -45,7 +45,7 @@ if (isset($_POST['uEmail']) && isset($_POST['uPass'])) {
                 $_SESSION['auth'] = TRUE;
                 $_SESSION['org'] = [
                     'id' => $crow['ID'],
-                    'Name'=> $crow['Name'],
+                    'Name' => $crow['Name'],
                 ];
                 $_SESSION["user"] = [
                     'id' => $row['ID'],
@@ -57,22 +57,22 @@ if (isset($_POST['uEmail']) && isset($_POST['uPass'])) {
                 ];
 
                 //Redirectionare la pagina principala
-                header("location: ../index.php");
+                header("location: ../dashboard.php");
                 exit();
 
             } else {
 
-                header("location: ../index.php?error=Please Verify your Email Adress.");
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
                 exit();
             }
 
         } else {
-            header("location: ../index.php?error=Incorect User Name or Password");
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
             exit();
         }
     }
 
 } else {
-    header("location: ../index.php?error=Please fill all fields");
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit();
 }
