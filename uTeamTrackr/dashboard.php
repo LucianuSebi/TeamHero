@@ -1,5 +1,9 @@
 <?php
 session_start();
+if ($_SESSION['auth'] != TRUE) {
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -16,5 +20,5 @@ session_start();
 
 
 <body>
-    <?php include('includes/menu.php') ?>
+    <?php include ('includes/menu.php') ?>
 </body>

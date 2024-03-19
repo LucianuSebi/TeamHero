@@ -1,6 +1,10 @@
 <?php session_start();
 error_reporting(E_ERROR | E_PARSE);
 include "db_conn.php";
+if ($_SESSION['auth'] != TRUE || $_SESSION['user']['rank'] == 'user') {
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit();
+}
 $id = $_SESSION['org']['id'];
 $sql = "SELECT * FROM organizations WHERE ID = '$id'";
 $sql_result = mysqli_query($conn, $sql);

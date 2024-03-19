@@ -1,9 +1,14 @@
 <?php session_start();
 error_reporting(E_ERROR | E_PARSE);
 include "db_conn.php";
+include "php_modules/roles.php";
+if ($_SESSION['auth'] != TRUE) {
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit();
+}
 $search = mysqli_real_escape_string($conn, $_GET['search']);
 $org = $_SESSION['organization']['uOrg'];
-if (!(empty($_GET['search']))) {
+if (!(empty ($_GET['search']))) {
     $sql = "SELECT * FROM projects WHERE Org= '$org'";
     $sql_result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($sql_result);
@@ -28,7 +33,7 @@ $sql_result = mysqli_query($conn, $sql);
 
 
 <body>
-    <?php include('includes/menu.php') ?>
+    <?php include ('includes/menu.php') ?>
 
     <div class="pageContent">
         <div class="categorii">

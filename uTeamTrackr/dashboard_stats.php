@@ -1,6 +1,10 @@
 <?php
 session_start();
 include "db_conn.php";
+if ($_SESSION['auth'] != TRUE) {
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit();
+}
 $orgID = $_SESSION['org']['id'];
 $sql = "SELECT * FROM skills WHERE Org = '$orgID' ORDER BY Name";
 $sql_result = mysqli_query($conn, $sql);

@@ -180,6 +180,14 @@ if (isset ($_POST['action'])) {
         }
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit();
+    } else if ($action == "changeRank") {
+        $rank = mysqli_real_escape_string($conn, $_POST['rank']);
+
+        $sql = "UPDATE users SET Rank= '$rank' WHERE id ='$id'";
+        $sql_result = mysqli_query($conn, $sql);
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit();
     }
 }
 header('Location: ' . $_SERVER['HTTP_REFERER']);

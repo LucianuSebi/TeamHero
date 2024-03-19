@@ -1,6 +1,10 @@
 <?php session_start();
 error_reporting(E_ERROR | E_PARSE);
 include "db_conn.php";
+if ($_SESSION['auth'] != TRUE) {
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit();
+}
 $id = mysqli_real_escape_string($conn, $_GET['user']);
 $sql = "SELECT * FROM users WHERE ID = '$id'";
 $sql_result = mysqli_query($conn, $sql);

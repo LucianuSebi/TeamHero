@@ -1,6 +1,10 @@
 <?php session_start();
 error_reporting(E_ERROR | E_PARSE);
 include "db_conn.php";
+if ($_SESSION['auth'] != TRUE) {
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit();
+}
 $id = mysqli_real_escape_string($conn, $_GET['user']);
 $sql = "SELECT * FROM users WHERE ID = '$id'";
 $sql_result = mysqli_query($conn, $sql);
@@ -25,7 +29,7 @@ $row = mysqli_fetch_array($sql_result);
 
 
 <body>
-    <?php include('includes/menu.php') ?>
+    <?php include ('includes/menu.php') ?>
 
     <div class="pageContent">
         <h1>My Profile</h1>
@@ -159,6 +163,7 @@ $row = mysqli_fetch_array($sql_result);
                     <form id="skill-information" style="height: auto;min-height: 300px;"
                         action="php_modules/change_account_settings.php" method="post">
                         <input type="hidden" name="action" value="addSkill">
+                        <input type="hidden" name="userID" value="<?php echo $id; ?>">
                         <select id="multi_option" multiple name="skills" placeholder="Add Skills"
                             data-silent-initial-value-set="false">
                             <?php
@@ -179,6 +184,17 @@ $row = mysqli_fetch_array($sql_result);
         </div>
         <div class="section">
             <h1>Change Rank</h1>
+            <form id="changeRank" style="height: 200px;" action="php_modules/change_account_settings.php" method="post">
+                <input type="hidden" name="action" value="changeRank">
+                <input type="hidden" name="userID" value="<?php echo $id; ?>">
+                <select id="single_option" name="rank" placeholder="Select Rank" data-silent-initial-value-set="false">
+                    <option value="user">User</option>
+                    <option value="projM">Project Manager</option>
+                    <option value="deptM">Departament Manager</option>
+                    <option value="admin">Administrator</option>
+                </select>
+            </form>
+            <button type="submit" form="changeRank">Save Changes</button>
         </div>
     </div>
 
@@ -188,5 +204,9 @@ $row = mysqli_fetch_array($sql_result);
 <script type="text/javascript">
     VirtualSelect.init({
         ele: '#multi_option'
+    });
+    VirtualSelect.init({
+        ele: '#single_option',
+        maxValues: 1
     });
 </script>
