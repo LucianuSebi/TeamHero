@@ -127,7 +127,7 @@ if (isset ($_POST['action'])) {
             if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM departament_ranks_users WHERE Recipient='$uID'"))) {
                 $sql = "UPDATE departament_ranks_users SET Rank='$rank' WHERE Recipient = '$uID'";
                 $sql_result = mysqli_query($conn, $sql);
-            } else {
+            } else if (trim($rank) != "") {
                 $sql = "INSERT INTO departament_ranks_users (Recipient, Rank, Dept) VALUES ('$uID','$rank','$id')";
                 $sql_result = mysqli_query($conn, $sql);
             }

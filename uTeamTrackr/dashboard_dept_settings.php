@@ -181,14 +181,15 @@ $row = mysqli_fetch_array($sql_result);
                                 </p>
                             </div>
                             <div class="skill-section">
-                                <form id="<?php echo $rowDeptRank['ID']; ?>remove"
+                                <form id="<?php echo $rowDeptRank['ID']; ?>removeskill"
                                     action="php_modules/change_dept_settings.php" method="post"
                                     style="width: 0px;height: 0px;"><input type="hidden" name="action"
                                         value="removeRank"><input type="hidden" name="deptID"
                                         value="<?php echo $id; ?>"><input type="hidden" name="rank"
                                         value="<?php echo $rowDeptRank['ID']; ?>">
                                 </form>
-                                <button type="submit" form="<?php echo $rowDeptRank['ID']; ?>remove">Delete Rank</button>
+                                <button type="submit" form="<?php echo $rowDeptRank['ID']; ?>removeskill">Delete
+                                    Rank</button>
                             </div>
                         </div>
                     <?php } ?>
