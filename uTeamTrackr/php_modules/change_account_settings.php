@@ -183,6 +183,8 @@ if (isset ($_POST['action'])) {
     } else if ($action == "changeRank") {
         $rank = mysqli_real_escape_string($conn, $_POST['rank']);
 
+        $rank = explode(',', $rank);
+
         is_array($rank) or $rank = array($rank);
         $rank = serialize($rank);
 
