@@ -53,7 +53,10 @@ $sql_result = mysqli_query($conn, $sql);
                             echo " " . $row['LName']; ?>
                         </p>
                         <p class="rank-categorie">
-                            <?php echo $row['Rank']; ?>
+                            <?php $ranks = unserialize($row['Rank']);
+                            foreach ($ranks as $rank) {
+                                echo $rank . " ";
+                            } ?>
                         </p>
                         <p class="manage-categorie">
                             SEE
@@ -68,7 +71,10 @@ $sql_result = mysqli_query($conn, $sql);
                             echo " " . $row['LName']; ?>
                         </p>
                         <p class="rank-categorie">
-                            <?php echo $row['Rank']; ?>
+                            <?php $ranks = unserialize($row['Rank']);
+                            foreach ($ranks as $rank) {
+                                echo $rank . " ";
+                            } ?>
                         </p>
                         <p class="manage-categorie">
                             Check Out

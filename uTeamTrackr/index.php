@@ -16,7 +16,20 @@ session_start();
 
 <body>
     <div class="container">
+        <div class="notification">
 
+            <?php if (isset ($_SESSION['status'])) {
+                ?>
+                <h1>
+                    <?php echo $_SESSION['status']; ?>
+                </h1>
+                <?php
+                session_unset();
+                session_destroy();
+            }
+            ?>
+
+        </div>
         <div class="topBar">
             <div class="topLeft">
                 <h1>uTeamTrackr</h1>

@@ -89,20 +89,21 @@ if (isset ($_POST['cName']) && isset ($_POST['cPhone']) && isset ($_POST['cEmail
     //If a field remains empty, it is send to the login page
     if (empty ($cName) || empty ($cPhone) || empty ($cEmail) || empty ($cAddress)) {
 
+        $_SESSION['status'] = "Plese Fill All Fields";
         header("location: ../index.php");
         exit();
 
         //Checking if the organisation name already exists
     } else if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM organizations WHERE Email='$cEmail' OR Name ='$cName' OR Phone='$cPhone'"))) {
 
+        $_SESSION['status'] = "Organization Already Exists";
         header("location: ../index.php?error=Organization already exists!");
         exit();
 
         //Inserting data into the data base
     } else {
 
-        $sql = "INSERT INTO organizations (id, Name, Phone, Email, Adress, token) VALUES (NULL, '$cName', '$cPhone', '$cEmail', '$cAddress','$token')";
-        $sql_result = mysqli_query($conn, $sql);
+        $sql_org = "INSERT INTO organizations (id, Name, Phone, Email, Adress, token) VALUES (NULL, '$cName', '$cPhone', '$cEmail', '$cAddress','$token')";
 
         //Check up email
         if ($sql_result) {
@@ -113,6 +114,7 @@ if (isset ($_POST['cName']) && isset ($_POST['cPhone']) && isset ($_POST['cEmail
 
             //In case of error, the info will be requested again
         } else {
+            $_SESSION['status'] = "Something Went Wrong!";
             header("location: ../index.php");
             exit();
         }
@@ -123,16 +125,17 @@ if (isset ($_POST['cName']) && isset ($_POST['cPhone']) && isset ($_POST['cEmail
         $token = md5(rand());
 
         if (empty ($fName) || empty ($lName) || empty ($uEmail) || empty ($uPass) || empty ($uRePass)) {
-
+            $_SESSION['status'] = "Plese Fill All Fields";
             header("location: ../index.php");
             exit();
 
         } else if ($uPass !== $uRePass) {
-
+            $_SESSION['status'] = "Passwords are not the same!";
             header("location: ../index.php?error=Passwords are not identical");
             exit();
 
         } else if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users WHERE Email='$uEmail'"))) {
+            $_SESSION['status'] = "Email Is Already Used!";
             header("location: ../index.php?error=Email is already used");
             exit();
 
@@ -145,6 +148,7 @@ if (isset ($_POST['cName']) && isset ($_POST['cPhone']) && isset ($_POST['cEmail
 
             $sql = "INSERT INTO users (ID, FName, LName, Email, Phone, Pass ,Rank, Org, token) VALUES (NULL, '$fName', '$lName', '$uEmail', '$uPhone', '$uPass','admin','$id', '$token')";
             $sql_result = mysqli_query($conn, $sql);
+            $sql_result = mysqli_query($conn, $sql_org);
 
             if ($sql_result) {
 

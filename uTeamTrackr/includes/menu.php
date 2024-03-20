@@ -1,4 +1,5 @@
 <?php echo ('') ?>
+<?php $rank = unserialize($_SESSION['user']['rank']); ?>
 <div class="leftBar">
     <div class="logo">
 
@@ -35,61 +36,71 @@
         </ul>
 
     </div>
-    <div class="category">
+    <?php if (in_array('admin', $rank) || in_array('projM', $rank) || in_array('deptM', $rank)) { ?>
+        <div class="category">
 
-        <div class="categoryHeader">
-            <p>ADMINISTRATION</p>
-            <i class="fa-solid fa-angle-up"></i>
+            <div class="categoryHeader">
+                <p>ADMINISTRATION</p>
+                <i class="fa-solid fa-angle-up"></i>
+            </div>
+
+            <ul>
+                <?php if (in_array('admin', $rank) || in_array('deptM', $rank)) { ?>
+                    <li>
+                        <a href="dashboard_members.php">Members</a>
+                    </li>
+                <?php } ?>
+                <?php if (in_array('admin', $rank) || in_array('projM', $rank)) { ?>
+                    <li>
+                        <a href="dashboard_skills.php">Skills</a>
+                    </li>
+                <?php } ?>
+                <?php if (in_array('admin', $rank) || in_array('deptM', $rank)) { ?>
+                    <li>
+                        <a href="dashboard_depts.php">Departaments</a>
+                    </li>
+                <?php } ?>
+                <li>
+                    <a href="dashboard_projects.php">Projects</a>
+                </li>
+                <li>
+                    <a href="dashboard_stats.php">Statistics</a>
+                </li>
+            </ul>
+
         </div>
+    <?php } ?>
+    <?php if (in_array('admin', $rank) || in_array('deptM', $rank)) { ?>
+        <div class="category">
 
-        <ul>
-            <li>
-                <a href="dashboard_members.php">Members</a>
-            </li>
-            <li>
-                <a href="dashboard_skills.php">Skills</a>
-            </li>
-            <li>
-                <a href="dashboard_depts.php">Departaments</a>
-            </li>
-            <li>
-                <a href="dashboard_projects.php">Projects</a>
-            </li>
-            <li>
-                <a href="dashboard_stats.php">Statistics</a>
-            </li>
-        </ul>
+            <div class="categoryHeader">
+                <p>DEPARTAMENTS</p>
+                <i class="fa-solid fa-angle-up"></i>
+            </div>
 
-    </div>
-    <div class="category">
+            <ul>
+                <?php
 
-        <div class="categoryHeader">
-            <p>DEPARTAMENTS</p>
-            <i class="fa-solid fa-angle-up"></i>
-        </div>
-
-        <ul>
-            <?php
-            $uID = $_SESSION['user']['id'];
-            $sql = "SELECT * FROM users WHERE ID='$uID'";
-            $sqlResult = mysqli_query($conn, $sql);
-            $drow = mysqli_fetch_array($sqlResult);
-            $depts = unserialize($drow['Dept']);
-            foreach ($depts as $dept) {
-                $sql = "SELECT * FROM departaments WHERE ID='$dept'";
+                $sql = "SELECT * FROM users WHERE ID='$uID'";
                 $sqlResult = mysqli_query($conn, $sql);
                 $drow = mysqli_fetch_array($sqlResult);
-                ?>
-                <li>
-                    <a href="dashboard_dept_settings.php?dept=<?php echo $dept; ?>">
-                        <?php echo $drow['Name']; ?>
-                    </a>
-                </li>
-            <?php } ?>
+                $depts = unserialize($drow['Dept']);
+                foreach ($depts as $dept) {
+                    $sql = "SELECT * FROM departaments WHERE ID='$dept'";
+                    $sqlResult = mysqli_query($conn, $sql);
+                    $drow = mysqli_fetch_array($sqlResult);
+                    ?>
+                    <li>
+                        <a href="dashboard_dept_settings.php?dept=<?php echo $dept; ?>">
+                            <?php echo $drow['Name']; ?>
+                        </a>
+                    </li>
+                <?php } ?>
 
-        </ul>
+            </ul>
 
-    </div>
+        </div>
+    <?php } ?>
 
     <div class="category" style="padding-top:20px;border-bottom:0px;">
 

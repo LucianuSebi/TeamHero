@@ -189,7 +189,8 @@ $row = mysqli_fetch_array($sql_result);
             <form id="changeRank" style="height: 200px;" action="php_modules/change_account_settings.php" method="post">
                 <input type="hidden" name="action" value="changeRank">
                 <input type="hidden" name="userID" value="<?php echo $id; ?>">
-                <select id="single_option" name="rank" placeholder="Select Rank" data-silent-initial-value-set="false">
+                <select id="single_option" name="rank" multiple placeholder="Select Rank"
+                    data-silent-initial-value-set="false">
                     <option value="user">User</option>
                     <option value="projM">Project Manager</option>
                     <option value="deptM">Departament Manager</option>
@@ -208,7 +209,6 @@ $row = mysqli_fetch_array($sql_result);
         ele: '#multi_option'
     });
     VirtualSelect.init({
-        ele: '#single_option',
-        maxValues: 1
+        ele: '#single_option'
     });
 </script>

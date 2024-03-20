@@ -183,6 +183,9 @@ if (isset ($_POST['action'])) {
     } else if ($action == "changeRank") {
         $rank = mysqli_real_escape_string($conn, $_POST['rank']);
 
+        is_array($rank) or $rank = array($rank);
+        $rank = serialize($rank);
+
         $sql = "UPDATE users SET Rank= '$rank' WHERE id ='$id'";
         $sql_result = mysqli_query($conn, $sql);
 

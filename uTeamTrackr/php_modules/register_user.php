@@ -58,18 +58,19 @@ if (isset ($_POST['fName']) && isset ($_POST['lName']) && isset ($_POST['uPhone'
 
     //If a field stays empty, the user is sent back to the login page
     if (empty ($fName) || empty ($lName) || empty ($uEmail) || empty ($uEmail) || empty ($uRePass) || empty ($token)) {
+        $_SESSION['status'] = "Plese Fill All Fields";
         header("location: ../index.php");
         exit();
     }
     //If the passwords are different, an appropiate message will show up
     else if ($uPass != $uRePass) {
-
+        $_SESSION['status'] = "Passwords are not the same!";
         header("location: ../index.php?error=Passwords are not identical");
         exit();
     }
     //The mail shouldn't be associed to another account
     else if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users WHERE Email = '$uEmail' AND Token = '$token' AND Verified = '1'"))) {
-
+        $_SESSION['status'] = "Email is already being used!";
         header("location: ../index.php?error=Email is already used");
         exit();
     }
@@ -91,7 +92,7 @@ if (isset ($_POST['fName']) && isset ($_POST['lName']) && isset ($_POST['uPhone'
 
         //In case of an error, the user is sent back to the login page
         else {
-
+            $_SESSION['status'] = "Something Went Wrong!";
             header("location: ../index.php");
             exit();
         }
