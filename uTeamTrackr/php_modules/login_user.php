@@ -64,18 +64,18 @@ if (isset ($_POST['uEmail']) && isset ($_POST['uPass'])) {
             } else {
 
                 $_SESSION['status'] = "Please verify your email!";
-                header('Location: ' . $_SERVER['HTTP_REFERER']);
+                header("location: ../index.php");
                 exit();
             }
 
         } else {
             $_SESSION['status'] = "Wrong Password or Email";
-            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            header("location: ../index.php");
             exit();
         }
     }
 
 } else {
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    header("location: ../index.php");
     exit();
 }
