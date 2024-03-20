@@ -32,7 +32,9 @@ $row = mysqli_fetch_array($sql_result);
     <?php include ('includes/menu.php') ?>
 
     <div class="pageContent">
-        <h1>My Profile</h1>
+        <h1>
+            <?php echo $row['FName'] . " " . $row['LName'] ?>'s Profile
+        </h1>
         <div class="section" style="height: 180px;">
             <form id="change-photo" style="height: 300px; flex-direction: row;"
                 action="php_modules/change_account_settings.php" enctype="multipart/form-data" method="post">

@@ -10,13 +10,13 @@ if (isset ($_POST['action'])) {
     if ($action == "removeSkill") {
 
         $removedSkill = mysqli_real_escape_string($conn, $_POST['skill']);
-        $sql = "DELETE FROM skills WHERE ID='$removedSkill'";
+        $sql = "DELETE FROM skills WHERE ID='$removedSkill' AND Org = '$id'";
         $sql_result = mysqli_query($conn, $sql);
 
         $sqlSkill = '"' . $removedSkill . '"';
         $removedSkill = array($removedSkill);
 
-        $sql = "SELECT * FROM users WHERE Skills LIKE '%$skillLike%' AND Org = '$id'";
+        $sql = "SELECT * FROM users WHERE Skills LIKE '%$sqlSkill%' AND Org = '$id'";
         $sql_result = mysqli_query($conn, $sql);
         while ($row = mysqli_fetch_assoc($sql_result)) {
 

@@ -50,11 +50,43 @@
                 <a href="dashboard_skills.php">Skills</a>
             </li>
             <li>
+                <a href="dashboard_depts.php">Departaments</a>
+            </li>
+            <li>
                 <a href="dashboard_projects.php">Projects</a>
             </li>
             <li>
                 <a href="dashboard_stats.php">Statistics</a>
             </li>
+        </ul>
+
+    </div>
+    <div class="category">
+
+        <div class="categoryHeader">
+            <p>DEPARTAMENTS</p>
+            <i class="fa-solid fa-angle-up"></i>
+        </div>
+
+        <ul>
+            <?php
+            $uID = $_SESSION['user']['id'];
+            $sql = "SELECT * FROM users WHERE ID='$uID'";
+            $sqlResult = mysqli_query($conn, $sql);
+            $drow = mysqli_fetch_array($sqlResult);
+            $depts = unserialize($drow['Dept']);
+            foreach ($depts as $dept) {
+                $sql = "SELECT * FROM departaments WHERE ID='$dept'";
+                $sqlResult = mysqli_query($conn, $sql);
+                $drow = mysqli_fetch_array($sqlResult);
+                ?>
+                <li>
+                    <a href="dashboard_dept_settings.php?dept=<?php echo $dept; ?>">
+                        <?php echo $drow['Name']; ?>
+                    </a>
+                </li>
+            <?php } ?>
+
         </ul>
 
     </div>

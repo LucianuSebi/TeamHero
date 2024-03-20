@@ -106,7 +106,7 @@ if (isset ($_POST['action'])) {
         if (isset ($_POST['skills'])) {
 
             $newSkills = mysqli_real_escape_string($conn, $_POST['skills']);
-            ;
+
             $newSkills = explode(',', $newSkills);
 
             $sql = "SELECT * FROM users WHERE ID = '$id'";

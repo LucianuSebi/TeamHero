@@ -32,7 +32,9 @@ $row = mysqli_fetch_array($sql_result);
     <?php include ('includes/menu.php') ?>
 
     <div class="pageContent">
-        <h1>My Profile</h1>
+        <h1>
+            <?php echo $row['FName'] . " " . $row['LName'] ?>'s Profile
+        </h1>
         <div class="section" style="height: 180px;flex-direction:row;">
             <div class="image-selector">
                 <?php if (file_exists("images/users/" . $row['Img'] . ".png")) { ?>

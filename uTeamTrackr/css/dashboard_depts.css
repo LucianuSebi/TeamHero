@@ -1,0 +1,160 @@
+.pageContent h1 {
+  padding: 40px;
+}
+.content {
+  border-radius: 20px;
+  width: 80%;
+  border: 2px solid gray;
+  padding: 30px 20px 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.section {
+  width: 90%;
+  padding: 30px 20px 30px 20px;
+  display: flex;
+  border-bottom: 2px solid gray;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.section form {
+  width: 100%;
+  height: auto;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.section h1 {
+  padding: 20px;
+  width: 90%;
+  text-align: left;
+}
+
+.section button {
+  border: 2px solid gray;
+  border-radius: 5px;
+  background-color: transparent;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: 40px;
+  color: gray;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.section button:hover {
+  background-color: grey;
+  color: black;
+  border-color: black;
+}
+
+.input-group {
+  min-height: 90px;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+.input-group label {
+  font-size: 22px;
+  padding: 10px 0px 10px 0px;
+}
+
+.input-group input {
+  background-color: rgba(200, 200, 200, 0.9);
+  border: none;
+  height: 30px;
+  font-size: 18px;
+}
+.input-group textarea {
+  background-color: rgba(200, 200, 200, 0.9);
+  border: none;
+  color: grey;
+  height: 120px;
+  font-size: 18px;
+}
+
+.section-container {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.skills {
+  width: 100%;
+  padding: 0 0 30px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.skills h1 {
+  font-size: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+.skill {
+  border: 1px solid gray;
+  margin: 20px 0 10px 0;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding: 20px 30px 20px 30px;
+  align-items: center;
+  width: 95%;
+  justify-content: space-evenly;
+  height: auto;
+}
+
+.skill-section {
+  display: flex;
+  width: auto;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  padding: 0 20px 0 0px;
+  border-right: 1px solid gray;
+}
+.skill-section-buttons {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  padding: 0 20px 0 0px;
+}
+.skill-section p {
+  line-height: 30px;
+  margin: 0;
+  font-size: 23px;
+  padding-right: 10px;
+}
+
+.skill-section-buttons button {
+  width: auto;
+  cursor: pointer;
+  border: 0;
+  text-decoration: underline;
+  height: 90%;
+  padding: 0 10px 0 10px;
+  font-size: 23px;
+}
+
+.add-skill {
+  padding: 10px;
+  width: 90%;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border-bottom: 2px solid gray;
+  margin-bottom: 20px;
+}
+.add-skill h2 {
+  padding: 10px 20px 10px 0;
+}
