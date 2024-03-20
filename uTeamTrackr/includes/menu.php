@@ -1,5 +1,6 @@
 <?php echo ('') ?>
-<?php $rank = unserialize($_SESSION['user']['rank']); ?>
+<?php $rank = unserialize($_SESSION['user']['rank']);
+$uID = $_SESSION['user']['id']; ?>
 <div class="leftBar">
     <div class="logo">
 
