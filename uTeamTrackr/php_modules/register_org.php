@@ -106,18 +106,9 @@ if (isset ($_POST['cName']) && isset ($_POST['cPhone']) && isset ($_POST['cEmail
         $sql_org = "INSERT INTO organizations (id, Name, Phone, Email, Adress, token) VALUES (NULL, '$cName', '$cPhone', '$cEmail', '$cAddress','$token')";
 
         //Check up email
-        if ($sql_result) {
 
-            $site_url = $_ENV['SITE_URL'];
-            $verification_link_org = "http://" . $site_url . "/TeamHero/uTeamTrackr/php_modules/verify-email.php?token=" . $token;
-
-
-            //In case of error, the info will be requested again
-        } else {
-            $_SESSION['status'] = "Something Went Wrong!";
-            header("location: ../index.php");
-            exit();
-        }
+        $site_url = $_ENV['SITE_URL'];
+        $verification_link_org = "http://" . $site_url . "/TeamHero/uTeamTrackr/php_modules/verify-email.php?token=" . $token;
 
         //Creating the admin organisation account
 
