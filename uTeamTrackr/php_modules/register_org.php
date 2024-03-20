@@ -137,8 +137,8 @@ if (isset ($_POST['cName']) && isset ($_POST['cPhone']) && isset ($_POST['cEmail
             $id = $org_id['ID'];
 
             $uPass = password_hash($uPass, PASSWORD_DEFAULT);
-
-            $sql = "INSERT INTO users (ID, FName, LName, Email, Phone, Pass ,Rank, Org, token) VALUES (NULL, '$fName', '$lName', '$uEmail', '$uPhone', '$uPass','admin','$id', '$token')";
+            $rank = 'a:1:{i:0;s:5:"admin";}';
+            $sql = "INSERT INTO users (ID, FName, LName, Email, Phone, Pass ,Rank, Org, token) VALUES (NULL, '$fName', '$lName', '$uEmail', '$uPhone', '$uPass','$rank','$id', '$token')";
             $sql_result = mysqli_query($conn, $sql);
 
 

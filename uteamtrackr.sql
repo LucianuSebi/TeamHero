@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2024 at 08:30 AM
+-- Generation Time: Mar 20, 2024 at 11:27 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -133,7 +133,7 @@ CREATE TABLE `users` (
   `City` varchar(255) NOT NULL DEFAULT '',
   `PostalCode` varchar(255) NOT NULL DEFAULT '',
   `Pass` varchar(255) NOT NULL DEFAULT '',
-  `Rank` varchar(255) NOT NULL DEFAULT 'user',
+  `Rank` varchar(255) NOT NULL DEFAULT 'a:1:{i:0;s:4:"user";}',
   `Bio` text NOT NULL DEFAULT '',
   `Img` varchar(255) NOT NULL DEFAULT '',
   `Skills` varchar(255) NOT NULL DEFAULT 'a:0:{}',
