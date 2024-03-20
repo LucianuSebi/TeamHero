@@ -44,7 +44,16 @@ if (isset ($_POST['action'])) {
                 $sql = "INSERT INTO departaments (Name, Org,Admin,Description) VALUES ('$dName', '$id','$dManager','$dDesc')";
                 $sql_result = mysqli_query($conn, $sql);
 
-                $sql = "UPDATE users SET Rank='deptM' WHERE Email='$dManager' AND Org='$id'";
+                $sql = "SELECT * FROM users WHERE Email='$dManager'";
+                $row_user = mysqli_fetch_array(mysqli_query($conn, $sql));
+
+                $oldRank = unserialize($row_user['Rank']);
+                $newRank = array("deptM");
+
+                $ranks = array_merge(array_diff($oldRank, $newRank), $newRank);
+                $ranks = serialize($ranks);
+
+                $sql = "UPDATE users SET Rank='$ranks' WHERE Email='$dManager' AND Org='$id'";
                 $sql_result = mysqli_query($conn, $sql);
 
                 $sql = "SELECT * FROM departaments WHERE Name = '$dName'";
