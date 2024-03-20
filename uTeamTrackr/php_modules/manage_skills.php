@@ -46,3 +46,5 @@ if (isset ($_POST['action'])) {
         }
     }
 }
+header('Location: ' . $_SERVER['HTTP_REFERER']);
+exit();

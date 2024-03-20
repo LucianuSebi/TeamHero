@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2024 at 12:53 PM
+-- Generation Time: Mar 20, 2024 at 08:30 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -30,9 +30,34 @@ SET time_zone = "+00:00";
 CREATE TABLE `departaments` (
   `ID` int(255) NOT NULL,
   `Name` varchar(255) NOT NULL,
-  `Email` varchar(255) NOT NULL,
   `Admin` varchar(255) NOT NULL,
+  `Description` varchar(255) NOT NULL,
   `Org` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `departament_ranks`
+--
+
+CREATE TABLE `departament_ranks` (
+  `ID` int(255) NOT NULL,
+  `Name` varchar(255) NOT NULL,
+  `Dept` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `departament_ranks_users`
+--
+
+CREATE TABLE `departament_ranks_users` (
+  `ID` int(255) NOT NULL,
+  `Recipient` int(255) NOT NULL,
+  `Rank` int(255) NOT NULL,
+  `Dept` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -108,12 +133,12 @@ CREATE TABLE `users` (
   `City` varchar(255) NOT NULL DEFAULT '',
   `PostalCode` varchar(255) NOT NULL DEFAULT '',
   `Pass` varchar(255) NOT NULL DEFAULT '',
-  `Rank` varchar(255) NOT NULL DEFAULT '',
+  `Rank` varchar(255) NOT NULL DEFAULT 'user',
   `Bio` text NOT NULL DEFAULT '',
   `Img` varchar(255) NOT NULL DEFAULT '',
-  `Skills` varchar(255) NOT NULL DEFAULT '',
+  `Skills` varchar(255) NOT NULL DEFAULT 'a:0:{}',
   `Org` int(255) NOT NULL DEFAULT 0,
-  `Dept` int(255) NOT NULL DEFAULT 0,
+  `Dept` varchar(255) NOT NULL DEFAULT 'a:0:{}',
   `Projects` varchar(255) NOT NULL DEFAULT '',
   `Token` varchar(255) NOT NULL DEFAULT '',
   `Verified` int(255) NOT NULL DEFAULT 0 COMMENT '0=Unverified'
@@ -139,6 +164,18 @@ CREATE TABLE `verified_skills` (
 -- Indexes for table `departaments`
 --
 ALTER TABLE `departaments`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `departament_ranks`
+--
+ALTER TABLE `departament_ranks`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `departament_ranks_users`
+--
+ALTER TABLE `departament_ranks_users`
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -185,6 +222,18 @@ ALTER TABLE `verified_skills`
 -- AUTO_INCREMENT for table `departaments`
 --
 ALTER TABLE `departaments`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `departament_ranks`
+--
+ALTER TABLE `departament_ranks`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `departament_ranks_users`
+--
+ALTER TABLE `departament_ranks_users`
   MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
 
 --
