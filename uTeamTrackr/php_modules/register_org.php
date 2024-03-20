@@ -132,6 +132,7 @@ if (isset ($_POST['cName']) && isset ($_POST['cPhone']) && isset ($_POST['cEmail
 
         } else {
 
+            $sql_result = mysqli_query($conn, $sql_org);
             $org_id = mysqli_fetch_assoc(mysqli_query($conn, "SELECT ID FROM organizations WHERE Email='$cEmail'"));
             $id = $org_id['ID'];
 
@@ -139,7 +140,7 @@ if (isset ($_POST['cName']) && isset ($_POST['cPhone']) && isset ($_POST['cEmail
 
             $sql = "INSERT INTO users (ID, FName, LName, Email, Phone, Pass ,Rank, Org, token) VALUES (NULL, '$fName', '$lName', '$uEmail', '$uPhone', '$uPass','admin','$id', '$token')";
             $sql_result = mysqli_query($conn, $sql);
-            $sql_result = mysqli_query($conn, $sql_org);
+
 
             if ($sql_result) {
 
